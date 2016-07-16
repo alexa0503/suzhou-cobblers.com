@@ -43,4 +43,5 @@ return [
     'next'=>'下一步',
     'prev'=>'上一步',
     'save_next'=>'保存并继续',
+    'submit_order'=>'提交订单',
 ];

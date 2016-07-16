@@ -13,7 +13,8 @@
         "unisharp/laravel-ckeditor": "^4.5",
         "bestmomo/filemanager": "1.1.*",
         "gloudemans/shoppingcart": "^2.1",
-        "latrell/alipay": "dev-master"
+	"ignited/laravel-omnipay": "2.*",
+	"lokielse/omnipay-alipay": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

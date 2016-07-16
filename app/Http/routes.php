@@ -25,11 +25,11 @@ Route::get('/_locale/{locale?}/{url?}', function ($locale = 'en', $url = null) {
 
 });
 
-Route::group(['middleware' => ['web','locale','menu','auth:web']], function () {
+Route::group(['middleware' => ['locale','menu','auth:web']], function () {
     Route::get('/orders','OrderController@index')->name('order.index');
     Route::get('/order','OrderController@create')->name('order.create');
     Route::post('/order','OrderController@store')->name('order.store');
-    Route::get('/order/pay','OrderController@pay')->name('order.pay');
+    Route::get('/order/pay/{id}','OrderController@pay')->name('order.pay');
     Route::get('/account','IndexController@account')->name('account');
     Route::get('/account/address','IndexController@accountAddress')->name('account.address');
     //地址api
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['web','locale','menu','auth:web']], function () {
     Route::delete('/order/address/{id}', 'OrderController@deleteAddress')->name('order.address.delete');
     Route::get('/order/payment/index', 'OrderController@indexPayment')->name('order.payment.index');
 });
-Route::group(['middleware' => ['web','locale','menu']], function () {
+Route::group(['middleware' => ['locale','menu']], function () {
     Route::auth('web');
     Route::get('/admin/login', 'Admin\AuthController@getLogin');
     Route::post('/admin/login', 'Admin\AuthController@postLogin');

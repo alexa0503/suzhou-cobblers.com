@@ -18,7 +18,7 @@ class IndexController extends Controller
     }
     public function address(Request $request, $id = null)
     {
-        $address = App\DeliverAdress::findOrFail($id);
+        $address = App\DeliverAddress::findOrFail($id);
         return $address;
     }
 }

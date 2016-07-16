@@ -19,6 +19,7 @@
                     <div class="row">
                         <div class="col-md-12 col-xs-12">
                             收货地址:{{$address->detailed_address}},{{$address->city}},{{$address->province}},{{$address->country}}
+                            <input name="deliver_address" value="{{$address->id}}" type="hidden" />
                         </div>
                     </div>
                 </div>
@@ -27,10 +28,10 @@
                     @foreach ($items as $item)
                     <div class="col-md-6 col-xs-12">
                         <div class="row">
-                            <div class="col-md-4 col-xs-4">
+                            <div class="col-md-5 col-xs-4">
                                 <img width="160" height="160" src="{{asset($item->options->thumb)}}">
                             </div>
-                            <div class="col-md-4 col-xs-8">
+                            <div class="col-md-7 col-xs-8">
                                 <div class="row">{{$item->name}}</div>
                                 <div class="row" style="margin-top:10px;">{{trans('messages.size')}}: {{$item->options->size}}</div>
                                 <div class="row" style="margin-top:10px;">
@@ -47,9 +48,9 @@
                     <label class="col-lg-2 col-md-3 col-xs-3 control-label">配送方式:</label>
                     <div class="col-lg-10 col-md-9 col-xs-9">
                         <div class="col-lg-10 col-md-9">
-                            <select name="" class="form-control">
-                                <option>选择配送方式</option>
-                                <option value="">EMS:{{trans('messages.price.symbol')}}25</option>
+                            <select name="deliver_type" class="form-control">
+                                <option value="">选择配送方式</option>
+                                <option value="1">EMS:{{trans('messages.price.symbol')}}25</option>
                             </select>
                             <div class="help-block"></div>
                         </div>
@@ -60,11 +61,11 @@
                     <label class="col-lg-2 col-md-3 col-xs-3 control-label">支付方式:</label>
                     <div class="col-lg-10 col-md-9 col-xs-9">
                         <div class="col-md-3 col-xs-6">
-                            <input type="radio" name="payment" value="alipay" id="payment-alipay"/>
+                            <input type="radio" name="payment" value="1" id="payment-alipay"/>
                             <label for="payment-alipay">支付宝</label>
                         </div>
                         <div class="col-md-3 col-xs-6">
-                            <input type="radio" name="payment" value="wechat" id="payment-wechat" />
+                            <input type="radio" name="payment" value="1" id="payment-wechat" />
                             <label for="payment-wechat">微信支付</label>
                         </div>
                         <div class="help-block"></div>
@@ -72,7 +73,7 @@
                 </div>
                 <!-- End .form-group  -->
                 <div class="form-group well" style="margin-left:20px;margin-right:20px;">
-                    <label class="col-lg-2 col-md-3 col-xs-3 control-label">卖家留言:</label>
+                    <label class="col-lg-2 col-md-3 col-xs-3 control-label">buyer_message:</label>
                     <div class="col-lg-10 col-md-9 col-xs-9">
                         <textarea class="form-control" rows="1" name="message"></textarea>
                         <div class="help-block"></div>
@@ -82,6 +83,15 @@
                 <div class="form-group well text-right" style="margin-left:20px;margin-right:20px;">
                     共{{$cart->count()}}件商品&nbsp;&nbsp;&nbsp;{{trans('messages.total_price')}}: <font color="red">{{trans('messages.price.symbol')}}{{$cart->subtotal()}}</font>
                 </div>
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <!-- End .form-group  -->
                 <div class="row" style="margin-left:20px;margin-right:20px;">
                     <div class="rows text-right">

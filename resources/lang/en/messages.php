@@ -44,4 +44,5 @@ return [
     'next'=>'Next',
     'prev'=>'Prev',
     'save_next'=>'Save and Next',
+    'submit_order'=>'Submit your order'
 ];
