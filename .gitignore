@@ -1,0 +1,21 @@
+idea/
+Homestead.yaml
+Homestead.json
+
+bower_components/
+vendor/
+node_modules/
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+bootstrap/cache/
+storage/
+public/storage
+public/qrcodes
+.env.*.php
+.env.php
+.env
+

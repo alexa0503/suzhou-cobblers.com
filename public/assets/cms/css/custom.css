@@ -1,0 +1,17 @@
+/* -----------------------------------------
+   Custom.css - put your own changes here
+----------------------------------------- */
+.nav > li.divider {
+    border-bottom: 1px solid #404b5b;
+    border-top: 1px solid #404b5b;
+    height: 3px;
+    background-color:#3d4d64;
+}
+.thumb-preview img {
+    width: 200px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.thumb-preview {
+    margin-bottom: 10px;
+}
