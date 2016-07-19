@@ -26,20 +26,27 @@ Route::get('/_locale/{locale?}/{url?}', function ($locale = 'en', $url = null) {
 });
 
 Route::group(['middleware' => ['locale','menu','auth:web']], function () {
-    Route::get('/orders','OrderController@index')->name('order.index');
-    Route::get('/order','OrderController@create')->name('order.create');
-    Route::post('/order','OrderController@store')->name('order.store');
-    Route::get('/order/pay/{id}','OrderController@pay')->name('order.pay');
-    Route::get('/account','IndexController@account')->name('account');
-    Route::get('/account/address','IndexController@accountAddress')->name('account.address');
+    route::any('pay/return/{payment}',['as'=>'pay.return','uses'=>'PayController@index']);
+    route::any('pay/notify/{payment}',['as'=>'pay.notify','uses'=>'PayController@notify']);
+    route::any('pay/cancel/{payment}',['as'=>'pay.cancel','uses'=>'PayController@cancel']);
+    //账户管理
+    Route::get('account/addresses','IndexController@indexAddress');
+    Route::get('account','IndexController@account')->name('account');
     //地址api
-    Route::get('/api/address/{id}', 'IndexController@address')->name('api.address');
+    Route::get('api/address/{id}', 'IndexController@address')->name('api.address');
+    Route::get('api/cities', 'IndexController@cities')->name('api.cities');
+
+    //Route::get('/order','OrderController@create')->name('order.create');
+    //Route::post('/order','OrderController@store')->name('order.store');
+    Route::get('/order/pay/{id}','OrderController@pay')->name('order.pay');
     //订单地址管理
     Route::get('/order/address', 'OrderController@address')->name('order.address.index');
     Route::post('/order/address', 'OrderController@postAddress')->name('order.address.store');
     Route::put('/order/address/{id}/default', 'OrderController@setDefaultAddress')->name('order.address.default');
     Route::delete('/order/address/{id}', 'OrderController@deleteAddress')->name('order.address.delete');
     Route::get('/order/payment/index', 'OrderController@indexPayment')->name('order.payment.index');
+    Route::resource('order', 'OrderController');
+
 });
 Route::group(['middleware' => ['locale','menu']], function () {
     Route::auth('web');
@@ -81,7 +88,7 @@ Route::group(['middleware' => ['locale','menu']], function () {
     //产品
     Route::resource('/product', 'ProductController');
 });
-Route::group(['middleware' => ['web','locale','menu', 'auth:admin']], function () {
+Route::group(['middleware' => ['locale','menu', 'auth:admin']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin_dashboard');
     Route::get('/admin/account', 'AdminController@account')->name('admin_account');
     Route::resource('/admin/page', 'Admin\PageController',['only' => ['index', 'update', 'edit']]);
@@ -90,8 +97,10 @@ Route::group(['middleware' => ['web','locale','menu', 'auth:admin']], function (
     Route::resource('/admin/products/type', 'Admin\ProductTypeController');
     Route::post('/admin/account', 'AdminController@accountPost');
     Route::resource('/admin/press', 'Admin\PressController');
-    Route::post('/admin/file/upload', 'AdminController@fileUpload')->name('admin_file_upload');
-    Route::post('/admin/file/delete', 'AdminController@fileDelete')->name('admin_file_delete');
+    Route::resource('admin/order', 'Admin\OrderController');
+    //Route::resource('admin/user', 'Admin\UserController');
+    //Route::post('/admin/file/upload', 'AdminController@fileUpload')->name('admin_file_upload');
+    //Route::post('/admin/file/delete', 'AdminController@fileDelete')->name('admin_file_delete');
 });
 Route::get('/admin/install', function () {
     if (0 == \App\Admin::count()) {

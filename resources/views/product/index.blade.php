@@ -13,9 +13,9 @@
             @foreach ($products as $product)
             <div class="col-xs-11 col-md-12 col-xs-offset-1 col-md-offset-0 item-thumb">
                 <a href="{{route('product.show',['id'=>$product->id])}}">
-                    <img src="/uploads/mldrx1-300x300.jpg" width="160" height="160">
-                    <img src="/uploads/Lotus_slippers2-200x200.jpg" width="160" height="160">
-                    <img src="/uploads/Lotus_slippers-200x200.jpg" width="160" height="160">
+                    @foreach ($product->images as $image)
+                    <img src="{{asset($image->image_path)}}" width="160" height="160">
+                    @endforeach
                 </a>
                 <h4>{{$product->title}}<small>{{trans('messages.price.symbol')}}{{$product->price}}</small></h4>
                 <p class="desc1">
@@ -33,7 +33,6 @@
             @endforeach
         </div>
     </div>
-    @include('cart')
 </div>
 @endsection
 @section('scripts')
@@ -43,14 +42,7 @@ $(document).ready(function() {
     $.getJSON(url,function(json){
         $('#cart-num').text(json.data.num);
     });
-    $('.btn-add-cart').click(function(){
-        var url = $(this).attr('data-url');
-        //$(this).unbind('click');
-        $.getJSON(url,function(json){
-            $('#cart-num').text(json.data.num);
-            //$(this).bind('click');
-        })
-    })
+
 });
 </script>
 @endsection

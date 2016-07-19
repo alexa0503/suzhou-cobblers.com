@@ -31,6 +31,7 @@ return [
     'size'=>'尺码',
     'unit_price'=>'单价',
     'total_price'=>'总价',
+    'deliver_price'=>'邮费',
     'subtotal'=>'小计',
     'welcome'=>'欢迎',
     'logout'=>'登出',
@@ -44,4 +45,23 @@ return [
     'prev'=>'上一步',
     'save_next'=>'保存并继续',
     'submit_order'=>'提交订单',
+    'my_orders'=>'我的订单',
+    'continue_pay'=>'继续支付',
+    'payment'=>[
+        '1'=>'支付宝',
+        '2'=>'Paypal',
+    ],
+    'order_status'=>[
+        '-1'=>'已关闭',
+        '0'=>'待付款',
+        '1'=>'待发货',
+        '2'=>'已发货',
+        '3'=>'已完成'
+    ],
+    'pay_limit'=>'请于30分钟内支付',
+    'created_at'=>'创建时间',
+    'order_no'=>'订单编号',
+    'stock'=>'库存',
+    'not_enough_goods'=>'没有足够的库存',
+    'buyer_message'=>'买家留言'
 ];

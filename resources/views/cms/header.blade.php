@@ -88,12 +88,12 @@
                     <span class="sr-only">Logout</span>
                 </a>
             </li>
-            <!--<li>
+            <li>
                 <a id="toggle-right-sidebar" href="#" class="tipB" title="Toggle right sidebar">
                     <i class="l-software-layout-sidebar-right"></i>
                     <span class="sr-only">Toggle right sidebar</span>
                 </a>
-            </li>-->
+            </li>
         </ul>
         <!-- / top right nav -->
     </div>

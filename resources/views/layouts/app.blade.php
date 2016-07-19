@@ -37,18 +37,9 @@
 <body>
 	<div class="page-header">
 		<div class="container">
-			<div class="pull-left">
+			<div class="pull-right">
 				<a href="{{url('/_locale',['locale'=>'en','url'=>base64_encode(Request::getUri())])}}">English</a>
 				<a href="{{url('/_locale',['locale'=>'zh-cn','url'=>base64_encode(Request::getUri())])}}">中文</a>
-			</div>
-			<div class="pull-right">
-				<!--<a href="{{url('/')}}"><i class="glyphicon glyphicon-cog"></i></a>-->
-				@if (Auth::guard('web')->check())
-				<span>{{trans('messages.welcome')}},<a href="{{route('account')}}">{{Auth::guard('web')->user()->name}}</a></span> | <a href="{{url('logout')}}" style="margin-right:10px;">{{trans('messages.logout')}}</a>
-				@else
-				<span>{{trans('messages.welcome')}},{{trans('messages.guest')}}</span> | <a href="{{url('login')}}" style="margin-right:10px;">{{trans('messages.login')}}</a>
-				@endif
-				<a href="{{route('cart.index')}}"><i class="glyphicon glyphicon-shopping-cart"></i></a>
 			</div>
 		</div>
 	</div>
@@ -60,17 +51,30 @@
 				</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
 					<img src="{{asset('/assets/images/icon-menu.png')}}" />
-					<!--<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>-->
 				</button>
 			</div>
 			<div class="collapse navbar-collapse" id="custom-collapse">
 				@include('navbar')
 			</div>
 		</div>
+	</nav>
+	<nav class="navbar navbar-default navbar-fixed-bottom" id="nav-bottom">
+	  <div class="container">
+		  <ul class="nav nav-pills nav-justified">
+		    <li role="presentation"><a href="{{url('types')}}">设计新品</a></li>
+		    <li role="presentation" class="dropup">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					账户管理 <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+		          <li><a href="#">地址管理</a></li>
+		          <li><a href="#">个人信息</a></li>
+		        </ul>
+			</li>
+		    <li role="presentation"><a href="{{route('order.index')}}">我的订单</a></li>
+		    <li role="presentation"><a href="{{url('cart')}}"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="badge" style="display:none;" id="cart-num">0</span></a></li>
+		  </ul>
+	  </div>
 	</nav>
 	<div id="mainContet">
         @yield('content')
@@ -83,7 +87,7 @@
 				<p>
 					Copyright &copy; 2015 Suzhou Cobblers - All rights reserved
 				</p>
-				<!--<p class="social-img">
+				<p class="social-img">
 					<a href="https://twitter.com/suzhou_cobblers" target="_blank" rel="nofollow"><img src="{{asset('/assets/images/16-twitter.png')}}" /></a>
 					<a href="http://weibo.com/suzhoucobblers" target="_blank" rel="nofollow"><img src="{{asset('/assets/images/16-sinaweibo.png')}}" /></a>
 					<a href="http://www.flickr.com/photos/suzhou-cobblers/" target="_blank" rel="nofollow"><img src="{{asset('/assets/images/16-flickr.png')}}" /></a>
@@ -91,7 +95,7 @@
 														<a target="_blank" href="http://www.tripadvisor.com/Attraction_Review-g308272-d1175749-Reviews-Suzhou_Cobblers_Boutique-Shanghai.html"><img src="http://www.tripadvisor.com/img/cdsi/img2/branding/socialWidget/20x28_green-21693-2.png"/></a>
 												</span>
 					<script src="http://www.jscache.com/wejs?wtype=socialButtonBubbles&amp;uniq=326&amp;locationId=1175749&amp;color=green&amp;size=rect&amp;lang=en_US&amp;display_version=2"></script>
-				</p>-->
+				</p>
 			</div>
 		</div>
 	</div>
@@ -110,6 +114,11 @@
 			if ($('#mainContet').height() < $(window).height() - 200) {
 				$('#mainContet').height(h);
 			}
+
+		    var url = '{{route("cart.count")}}';
+		    $.getJSON(url,function(json){
+		        $('#cart-num').show().text(json.data.num);
+		    });
 		})
 	</script>
     @yield('scripts')

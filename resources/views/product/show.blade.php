@@ -41,6 +41,9 @@
                             ＊{{trans('messages.clean_desc')}}：{{$product->clean_desc}}
                         </div>
                         <div class="desc2">
+                            <span class="label label-info">{{trans('messages.stock')}}: {{$product->stock}}</span>
+                        </div>
+                        <div class="desc2">
                             <select name="size" id="item-size">
                             <option value="">{{trans('messages.select_size')}}</option>
                                 @foreach ($product->sizes as $size_type)
@@ -50,19 +53,16 @@
                             <a href="#">{{trans('messages.check_size')}}</a>
                         </div>
                         <div class="desc2">
-                            <div class="col-md-4" style="width:60px;padding:0;line-height:32px;">{{trans('messages.qty')}}:</div>
-                            <div class="col-md-6" style="width:140px;padding:0;">
+                            <div style="width:120px;padding:0;">
                                 <input name="num" class="" id="item-num" value="1" size="6"></div>
                             <div class="clearfix"></div>
                         </div>
-
                         <div class="desc2">
                             <a class="btn btn-primary btn-add-cart" href="{{route('cart.store',['id'=>$product->id])}}"><i class="glyphicon glyphicon-shopping-cart"></i> {{trans('messages.add_cart')}}</a>
                             <!--<a class="btn btn-primary btn-buy" href="{{route('cart.store',['id'=>$product->id])}}"><i class="glyphicon"></i> {{trans('messages.one_step_buy')}}</a>-->
                         </div>
                     </div>
                 </div>
-                @include('cart')
             </div>
         </div>
     </div>
@@ -75,10 +75,6 @@ $(document).ready(function() {
     $('#item-num').TouchSpin({
         min: 1,
         max: 999999
-    });
-    var url = '{{route("cart.count")}}';
-    $.getJSON(url,function(json){
-        $('#cart-num').text(json.data.num);
     });
     var img = $('.item-small-images img').attr('src');
     $('.item-image img').attr('src', img);
@@ -106,8 +102,10 @@ $(document).ready(function() {
                     if( json && json.ret == 0){
                         $('#cart-num').text(json.data.num);
                         if(obj.hasClass('btn-one-buy')){
-                            //location.href='{{route("order.index")}}';
                         }
+                    }
+                    else{
+                        alert(json.msg);
                     }
 
                 },

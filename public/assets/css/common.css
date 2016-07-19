@@ -56,7 +56,7 @@ html,body{
     margin-bottom: 0px;
 }
 #footer {
-    margin: 30px 0 0 30px;
+    margin: 30px 0 60px 30px;
 }
 #footer .container p {
     color: #cccccc;
@@ -268,4 +268,20 @@ html,body{
     .cart-list .cart-list-desc .btn {
         1em;
     }
+}
+#nav-bottom .nav-justified > li {
+    display: table-cell;
+    width: 1%;
+}
+#nav-bottom .nav-justified > li > a {
+    margin-bottom: 0;
+}
+#nav-bottom .nav-tabs-justified > li > a {
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+}
+#nav-bottom .nav-tabs-justified > .active > a,
+#nav-bottom .nav-tabs-justified > .active > a:hover,
+#nav-bottom .nav-tabs-justified > .active > a:focus {
+    border-bottom-color: #fff;
 }

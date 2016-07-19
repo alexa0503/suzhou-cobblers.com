@@ -26,9 +26,9 @@ class CreateOrdersTable extends Migration
             $table->string('consignee_zip_code',40);
             $table->string('consignee_phone_number',80);
             $table->string('deliver_address',200);
-            $table->string('deliver_country',60);
-            $table->string('deliver_province',60);
-            $table->string('deliver_city',60);
+            $table->integer('deliver_country_id')->unsigned()->nullable();
+            $table->integer('deliver_province_id')->unsigned()->nullable();
+            $table->integer('deliver_city_id')->unsigned()->nullable();
             $table->string('buyer_message',400);
             $table->integer('status')->index();
             $table->integer('user_id')->unsigned()->nullable()->index();

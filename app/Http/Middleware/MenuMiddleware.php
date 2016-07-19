@@ -32,7 +32,10 @@ class MenuMiddleware
         Menu::make('adminNavbar', function($menu){
             $menu->add('控制面板',['route'=>'admin_dashboard'])->divide();
 
-            //$product_item = $menu->add('订单管理', route('admin.order.index'));
+            $order_item = $menu->add('订单管理', '#')->divide();
+            $order_item->add('待发货订单', route('admin.order.index',['status'=>1]));
+            $order_item->add('待完成订单', route('admin.order.index',['status'=>2]));
+            $order_item->add('查看所有', route('admin.order.index'));
 
             $product_type_item = $menu->add('产品分类', '#');
             $product_type_item->add('查看', route('admin.products.type.index'));

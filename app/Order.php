@@ -14,9 +14,9 @@ class Order extends Model
         'consignee_zip_code',
         'consignee_phone_number',
         'deliver_address',
-        'deliver_country',
-        'deliver_province',
-        'deliver_city',
+        'deliver_country_id',
+        'deliver_province_id',
+        'deliver_city_id',
         'deliver_type',
         'deliver_fee',
         'total_fee',
@@ -28,4 +28,16 @@ class Order extends Model
         'status',
         'payment',
     ];
+    public function getSubjectAttribute($vaule)
+    {
+        return '阿里支付';
+    }
+    public function products()
+    {
+        return $this->hasMany('App\OrderProduct');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
 }

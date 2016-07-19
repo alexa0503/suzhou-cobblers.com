@@ -8,7 +8,7 @@
                 <h4 class="panel-title">{{trans('messages.cart')}}</h4>
             </div>
             <div class="panel-body">
-                {{ Form::open(array('route' => ['order.store'], 'class'=>'form-horizontal', 'id'=>'form')) }}
+                {{ Form::open(array('route' => ['order.store'], 'class'=>'form-horizontal', 'id'=>'checkout-form')) }}
                 <div class="form-group well" style="margin-left:20px;margin-right:20px;">
                     <div class="row">
                         <div class="col-md-6 col-xs-6">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-xs-12">
-                            收货地址:{{$address->detailed_address}},{{$address->city}},{{$address->province}},{{$address->country}}
+                            收货地址:{{$address->country->name}}@if ($address->province != null),{{$address->province->name}}@endif @if ($address->city != null),{{$address->city->name}}@endif,{{$address->detailed_address}}
                             <input name="deliver_address" value="{{$address->id}}" type="hidden" />
                         </div>
                     </div>
@@ -62,18 +62,18 @@
                     <div class="col-lg-10 col-md-9 col-xs-9">
                         <div class="col-md-3 col-xs-6">
                             <input type="radio" name="payment" value="1" id="payment-alipay"/>
-                            <label for="payment-alipay">支付宝</label>
+                            <label for="payment-alipay"><i><img src="{{asset('assets/images/icon-alipay.png')}}" height="24" alt="支付宝" /></i></label>
                         </div>
                         <div class="col-md-3 col-xs-6">
-                            <input type="radio" name="payment" value="1" id="payment-wechat" />
-                            <label for="payment-wechat">微信支付</label>
+                            <input type="radio" name="payment" value="2" id="payment-paypal" />
+                            <label for="payment-paypal"><i><img src="{{asset('assets/images/icon-paypal.png')}}" height="24" alt="Paypal" /></i></label>
                         </div>
                         <div class="help-block"></div>
                     </div>
                 </div>
                 <!-- End .form-group  -->
                 <div class="form-group well" style="margin-left:20px;margin-right:20px;">
-                    <label class="col-lg-2 col-md-3 col-xs-3 control-label">buyer_message:</label>
+                    <label class="col-lg-2 col-md-3 col-xs-3 control-label">{{trans('messages.buyer_message')}}:</label>
                     <div class="col-lg-10 col-md-9 col-xs-9">
                         <textarea class="form-control" rows="1" name="message"></textarea>
                         <div class="help-block"></div>
@@ -101,6 +101,7 @@
                 <!-- End .form-group  -->
                 {{ Form::close() }}
                 <!-- End form  -->
+                </div>
             </div>
             <!-- End .panel -->
         </div>
@@ -111,6 +112,12 @@
 @section('scripts')
 <script>
 $().ready(function(){
+    $('#checkout-form').submit(function(){
+        if($('#payment').val() == '2'){
+            $('#paypal-form').submit();
+        }
+        //return false;
+    })
 })
 </script>
 @endsection

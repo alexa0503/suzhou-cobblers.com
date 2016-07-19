@@ -15,4 +15,8 @@ class OrderProduct extends Model
         'user_id',
     ];
     public $timestamps = false;
+    public function detail()
+    {
+        return $this->belongsTo('App\Product','product_id');
+    }
 }

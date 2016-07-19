@@ -113,7 +113,10 @@ return [
     'attributes' => [
         'return_desc' => 'return description',
         'clean_desc' => 'clean description',
-        'desc' => 'description'
+        'desc' => 'description',
+        'country_id'=>'country',
+        'city_id'=>'city',
+        'province_id'=>'province',
     ],
 
 ];

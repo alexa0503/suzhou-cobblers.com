@@ -53,7 +53,9 @@ class CartController extends Controller
         $num = $request->input('num');
         $product = App\Product::find($id);
         //$product->sizes;
-
+        if($product->stock < $num ){
+            return ['ret'=>1001,'msg'=>trans('messages.not_enough_goods')];
+        }
         $cart->add([
             //'product'=>$product,
             'id'=>$locale.'_'.$product->id.'_'.$size,

@@ -147,7 +147,10 @@ return [
         'product_type' => '产品分类',
         'product_name' => '产品名称',
         'stock' => '库存',
-        'price' => '价格'
+        'price' => '价格',
+        'country_id'=>'国家',
+        'city_id'=>'城市',
+        'province_id'=>'省份',
     ],
 
 ];
