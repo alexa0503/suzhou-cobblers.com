@@ -8,7 +8,7 @@
                 <!-- Start .page-content-inner -->
                 <div id="page-header" class="clearfix">
                     <div class="page-header">
-                        <h2>产品管理<small>@if (App::getLocale() == 'zh-cn') 中文 @else 英文 @endif</small></h2>
+                        <h2>订单查看</h2>
                     </div>
 
                 </div>
@@ -44,28 +44,25 @@
                                     <thead>
                                     <tr>
                                         <th>订单编号</th>
-                                        <th>订单用户</th>
+                                        <th>用户</th>
+                                        <th>收货人姓名</th>
                                         <th>订单总额</th>
                                         <th>订单状态</th>
-                                        <th style="width:160px;">操作</th>
+                                        <th>创建时间</th>
+                                        <th style="width:100px;">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($orders as $order)
                                     <tr>
                                         <td><a href="{{route('admin.order.show',['id'=>$order->id])}}" title="点击查看">{{ $order->order_no }}</a></td>
-                                        <td><a href="">{{ $order->user->email }}</a></td>
+                                        <td><a href="{{route('admin.user.show',['id'=>$order->user->id])}}">{{ $order->user->email }}</a></td>
+                                        <td>{{ $order->consignee_first_name }},{{ $order->consignee_last_name }}</td>
                                         <td><span class="label label-info">@if ($order->locale == 'en'){{'$'}}@else{{'￥'}}@endif</span> {{ $order->total_fee }}</td>
                                         <td>{{ trans('messages.order_status.'.$order->status) }}</td>
+                                        <td>{{$order->created_at}}</td>
                                         <td>
-                                            @if ($order->status == 1)
-                                            <a href="{{route('admin.order.edit',['id'=>$order->id])}}" class="btn btn-xs btn-default">发货</a>
-                                            @elseif ($order->status == 2)
-                                            <a href="{{route('admin.order.edit',['id'=>$order->id])}}" class="btn btn-xs btn-default">完成</a>
-                                            @endif
-                                            @if ($order->status == 0)
-                                            <a href="{{route('admin.order.destroy',['id'=>$order->id])}}" class="btn btn-xs btn-default delete">关闭</a>
-                                            @endif
+                                            <a href="{{route('admin.order.show',['id'=>$order->id])}}" class="btn btn-xs btn-default">查看</a>
                                         </td>
                                     </tr>
                                     @endforeach

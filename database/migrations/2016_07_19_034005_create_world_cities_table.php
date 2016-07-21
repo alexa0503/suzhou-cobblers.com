@@ -16,7 +16,8 @@ class CreateWorldCitiesTable extends Migration
             $table->increments('id');
             $table->string('name_cn',60);
             $table->string('name_en',60);
-            $table->integer('parent_id')->nullable();
+            $table->integer('parent_id')->nullable()->unsigned()->index();
+            $table->foreign('parent_id')->references('id')->on('world_cities');
             //$table->timestamps();
         });
     }

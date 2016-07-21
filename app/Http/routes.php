@@ -26,9 +26,9 @@ Route::get('/_locale/{locale?}/{url?}', function ($locale = 'en', $url = null) {
 });
 
 Route::group(['middleware' => ['locale','menu','auth:web']], function () {
-    route::any('pay/return/{payment}',['as'=>'pay.return','uses'=>'PayController@index']);
-    route::any('pay/notify/{payment}',['as'=>'pay.notify','uses'=>'PayController@notify']);
-    route::any('pay/cancel/{payment}',['as'=>'pay.cancel','uses'=>'PayController@cancel']);
+    route::any('pay/return/{payment}/{id}',['as'=>'pay.return','uses'=>'PayController@index']);
+    route::any('pay/notify/{payment}/{id}',['as'=>'pay.notify','uses'=>'PayController@notify']);
+    route::any('pay/cancel/{payment}/{id}',['as'=>'pay.cancel','uses'=>'PayController@cancel']);
     //账户管理
     Route::get('account/addresses','IndexController@indexAddress');
     Route::get('account','IndexController@account')->name('account');
@@ -44,7 +44,6 @@ Route::group(['middleware' => ['locale','menu','auth:web']], function () {
     Route::post('/order/address', 'OrderController@postAddress')->name('order.address.store');
     Route::put('/order/address/{id}/default', 'OrderController@setDefaultAddress')->name('order.address.default');
     Route::delete('/order/address/{id}', 'OrderController@deleteAddress')->name('order.address.delete');
-    Route::get('/order/payment/index', 'OrderController@indexPayment')->name('order.payment.index');
     Route::resource('order', 'OrderController');
 
 });
@@ -98,7 +97,7 @@ Route::group(['middleware' => ['locale','menu', 'auth:admin']], function () {
     Route::post('/admin/account', 'AdminController@accountPost');
     Route::resource('/admin/press', 'Admin\PressController');
     Route::resource('admin/order', 'Admin\OrderController');
-    //Route::resource('admin/user', 'Admin\UserController');
+    Route::resource('admin/user', 'Admin\UserController');
     //Route::post('/admin/file/upload', 'AdminController@fileUpload')->name('admin_file_upload');
     //Route::post('/admin/file/delete', 'AdminController@fileDelete')->name('admin_file_delete');
 });

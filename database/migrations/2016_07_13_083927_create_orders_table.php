@@ -30,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->integer('deliver_province_id')->unsigned()->nullable();
             $table->integer('deliver_city_id')->unsigned()->nullable();
             $table->string('buyer_message',400);
+            $table->string('deliver_no',100);
             $table->integer('status')->index();
             $table->integer('user_id')->unsigned()->nullable()->index();
             $table->foreign('user_id')->references('id')->on('users');

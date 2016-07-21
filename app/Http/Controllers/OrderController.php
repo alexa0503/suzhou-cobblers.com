@@ -26,7 +26,7 @@ class OrderController extends Controller
     {
         $user_id = Auth::guard('web')->user()->id;
         $locale = App::getLocale();
-        $orders = App\Order::where('user_id', $user_id)->get();
+        $orders = App\Order::where('user_id', $user_id)->where('locale',$locale)->orderBy('created_at','DESC')->get();
 
         return view('order.index',['orders'=>$orders]);
     }
@@ -35,11 +35,38 @@ class OrderController extends Controller
         $user_id = Auth::guard('web')->user()->id;
         $locale = App::getLocale();
         $cart = Cart::instance($locale);
-        if($cart->count() == 0){
+        $count = $cart->count();
+        if($count == 0){
             return redirect(route('cart.index'));
         }
         $items = $cart->content();
+
         $address = App\DeliverAddress::findOrFail($request->input('address'));
+
+        $collection = App\DeliverType::where('locale', $locale)->get();
+        //根据物品数量计算出运费
+        //$address->province_id;
+        $deliver_types = $collection->map(function($item) use($address, $count){
+            $deliver_fee = App\DeliverFee::where('type_id', $item->id)->where('city_id',$address->province_id)->first();
+            if( null == $deliver_fee){
+                $deliver_fee = App\DeliverFee::where('type_id', $item->id)->whereNull('city_id')->first();
+                //var_dump($fee->value,json_encode([9999=>20]));
+            }
+            $result = $deliver_fee->value;
+            $unit_fee = 0;
+            foreach( $result as $k=>$v){
+                if($count < $k){
+                    $unit_fee = $v;
+                    break;
+                }
+            }
+            return [
+                'id'=>$item->id,
+                'name'=>$item->name,
+                'fee'=> $unit_fee*$count,
+            ];
+        });
+        //$deliver_fess = App\DeliverFee::where('')
         if( $address->user_id != $user_id){
             return Response('您没有足够的权限',503);
         }
@@ -47,6 +74,7 @@ class OrderController extends Controller
             'items'=>$items,
             'cart'=>$cart,
             'address'=>$address,
+            'deliver_types'=>$deliver_types,
         ]);
     }
     public function store(Request $request)
@@ -59,14 +87,31 @@ class OrderController extends Controller
         ]);
         $user_id = Auth::guard('web')->user()->id;
         $locale = App::getLocale();
-        $deliver_fee = 0;///运费
         $order_no = date('YmdHis').$user_id;//生成订单编号
         $cart = Cart::instance($locale);
-        if($cart->count() == 0){
+        $count = $cart->count();
+        if($count == 0){
             return redirect(route('cart.index'));
         }
         $items = $cart->content();
         $address = App\DeliverAddress::findOrFail($request->input('deliver_address'));
+        $deliver_type = App\DeliverType::findOrFail($request->input('deliver_type'));
+
+        $deliver_fee = App\DeliverFee::where('type_id', $deliver_type->id)->where('city_id',$address->province_id)->first();
+        if( null == $deliver_fee){
+            $deliver_fee = App\DeliverFee::where('type_id', $deliver_type->id)->whereNull('city_id')->first();
+            //var_dump($fee->value,json_encode([9999=>20]));
+        }
+        $result = $deliver_fee->value;
+        $unit_fee = 0;
+        foreach( $result as $k=>$v){
+            if($count < $k){
+                $unit_fee = $v;
+                break;
+            }
+        }
+        $deliver_fee = $unit_fee*$count;
+
         $total_fee = $cart->subTotal() + $deliver_fee;
         $items_fee = $cart->subTotal();
 
@@ -100,6 +145,7 @@ class OrderController extends Controller
                     'product_name'=>$item->name,
                     'unit_price'=>$item->price,
                     'qty'=>$item->qty,
+                    'size'=>$item->options->size,
                     'order_id'=>$order->id,
                     'user_id'=>$user_id,
                 ];
@@ -114,10 +160,6 @@ class OrderController extends Controller
             return Response($error_msg,503);
         }
         return redirect(route('order.pay',['id'=>$order->id]));
-
-
-
-
     }
     public function pay(Request $request, $id)
     {
@@ -126,9 +168,10 @@ class OrderController extends Controller
         if( $order->payment == 1 ){
             //git:https://github.com/lokielse/omnipay-alipay
             $gateway = Omnipay::create('Alipay_Express');
-            $gateway->setPartner('2088102849184119');
-            $gateway->setKey('m3qu2mlackd1yhi8jijygvjkb23zmzbh');
-            $gateway->setSellerEmail('suzhou_cobblers@yahoo.com');
+            $config = config('laravel-omnipay.gateways.alipay.options');
+            $gateway->setPartner($config['partner']);
+            $gateway->setKey($config['partner']);
+            $gateway->setSellerEmail($config['sellerEmail']);
             $gateway->setReturnUrl(route('pay.return',['payment'=>'alipay']));
             $gateway->setNotifyUrl(route('pay.notify',['payment'=>'alipay']));
             $options = [
@@ -136,41 +179,30 @@ class OrderController extends Controller
                 'subject' => $order->subject,
                 'total_fee'=>$order->total_fee,
             ];
-            $response = $gateway->purchase($options)->send();
-            $response->redirect();
         }
         //paypal
         elseif($order->payment == 2){
             $gateway = Omnipay::create('PayPal_Express');
-            $options = config('laravel-omnipay.gateways.paypal.options');
-            $gateway->setUsername($options['username']);
-            $gateway->setPassword($options['password']);
-            $gateway->setSignature($options['signature']);
+            $config = config('laravel-omnipay.gateways.paypal.options');
+            $gateway->setUsername($config['username']);
+            $gateway->setPassword($config['password']);
+            $gateway->setSignature($config['signature']);
+            $gateway->setTestMode($config['testMode']);
             $options = array(
                 'amount' => $order->total_fee,
                 'currency' => 'USD',
                 'description' => $order->subject,
                 'transactionId' => $order->order_no,
                 'transactionReference' => $order->order_no,
-                'returnUrl' => route('pay.return',['payment'=>'paypal']),
-                'cancelUrl' => route('pay.cancel',['payment'=>'paypal']),
-                'notifyUrl' => route('pay.notify',['payment'=>'paypal'])
+                //'testMode'=>true,
+                'returnUrl' => route('pay.return',['payment'=>'paypal','id'=>$order->id]),
+                'cancelUrl' => route('pay.cancel',['payment'=>'paypal','id'=>$order->id]),
+                'notifyUrl' => route('pay.notify',['payment'=>'paypal','id'=>$order->id])
              );
-             //var_dump($gateway);
-             $response = $gateway->purchase($options)->send();
-             //var_dump($response->getMessage(),route('pay.cancel',['payment'=>'paypal']));
-             $response->redirect();
         }
-    }
-    public function indexPayment(Request $request)
-    {
-        $locale = App::getLocale();
-        $cart = Cart::instance($locale);
-        $items = $cart->content();
-
-        return view('payment',[
-            'itmes'=>$items,
-        ]);
+        $response = $gateway->purchase($options)->send();
+        //var_dump($response->getMessage());
+        $response->redirect();
     }
     public function postAddress(Request $request)
     {

@@ -46,7 +46,7 @@
                                         <th>库存</th>
                                         <th>分类</th>
                                         <th>状态</th>
-                                        <th style="width:160px;">操作</th>
+                                        <th style="width:200px;">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -59,7 +59,8 @@
                                         <td class="product-status">@if ($product->is_active == 0)<font color="red">下架</font>@else正常@endif</td>
                                         <td>
                                             <a href="{{route('admin.product.status',['id'=>$product->id])}}" class="btn btn-xs btn-default product-update-status">@if ($product->is_active == 0)上架@else下架@endif</a>
-                                            <a href="{{route('admin.product.edit',['id'=>$product->id])}}" class="btn btn-xs btn-default" style="margin-left:10px;margin-right:10px;">编辑</a>
+                                            <a href="{{route('admin.product.edit',['id'=>$product->id])}}" class="btn btn-xs btn-default">编辑</a>
+                                            <a href="{{route('admin.product.show',['id'=>$product->id])}}" class="btn btn-xs btn-default">查看</a>
                                             <a href="{{route('admin.product.destroy',['id'=>$product->id])}}" class="btn btn-xs btn-warning delete">删除</a>
                                         </td>
                                     </tr>

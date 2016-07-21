@@ -40,14 +40,14 @@
                                 <h4>{{$product->detail->title}}</h4>
                             </div>
                             <div class="col-md-4 col-xs-4 text-right">
-                                <h5>{{$product->unit_price}}</h5>
+                                <h5>{{trans('messages.price.symbol')}} {{$product->unit_price}}</h5>
                                 <h5>×{{$product->qty}}</h5>
                             </div>
                         </div>
                         @endforeach
                         <div class="col-md-12 col-xs-12 text-right">
                             <hr>
-                            {{trans('messages.total_price')}}:{{$order->total_fee}} [{{trans('messages.deliver_price')}}:{{$order->deliver_fee}}]
+                            {{trans('messages.total_price')}}:{{trans('messages.price.symbol')}}{{$order->total_fee}} [{{trans('messages.deliver_price')}}:{{trans('messages.price.symbol')}}{{$order->deliver_fee}}]
                         </div>
                     </div>
                     @endforeach

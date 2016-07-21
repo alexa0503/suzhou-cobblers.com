@@ -48,9 +48,12 @@
                     <label class="col-lg-2 col-md-3 col-xs-3 control-label">配送方式:</label>
                     <div class="col-lg-10 col-md-9 col-xs-9">
                         <div class="col-lg-10 col-md-9">
-                            <select name="deliver_type" class="form-control">
+                            <select name="deliver_type" class="form-control" id="deliver_type">
                                 <option value="">选择配送方式</option>
-                                <option value="1">EMS:{{trans('messages.price.symbol')}}25</option>
+                                @foreach ($deliver_types as $type)
+                                <option data-fee="{{$type['fee']}}" value="{{$type['id']}}">{{$type['name']}}:{{trans('messages.price.symbol')}}{{$type['fee']}}</option>
+                                @endforeach
+
                             </select>
                             <div class="help-block"></div>
                         </div>
@@ -60,14 +63,17 @@
                 <div class="form-group well" style="margin-left:20px;margin-right:20px;">
                     <label class="col-lg-2 col-md-3 col-xs-3 control-label">支付方式:</label>
                     <div class="col-lg-10 col-md-9 col-xs-9">
+                        @if (App::getLocale() == 'zh-cn')
                         <div class="col-md-3 col-xs-6">
-                            <input type="radio" name="payment" value="1" id="payment-alipay"/>
+                            <input type="radio" name="payment" checked value="1" id="payment-alipay"/>
                             <label for="payment-alipay"><i><img src="{{asset('assets/images/icon-alipay.png')}}" height="24" alt="支付宝" /></i></label>
                         </div>
+                        @else
                         <div class="col-md-3 col-xs-6">
                             <input type="radio" name="payment" value="2" id="payment-paypal" />
                             <label for="payment-paypal"><i><img src="{{asset('assets/images/icon-paypal.png')}}" height="24" alt="Paypal" /></i></label>
                         </div>
+                        @endif
                         <div class="help-block"></div>
                     </div>
                 </div>
@@ -81,7 +87,7 @@
                 </div>
                 <!-- End .form-group  -->
                 <div class="form-group well text-right" style="margin-left:20px;margin-right:20px;">
-                    共{{$cart->count()}}件商品&nbsp;&nbsp;&nbsp;{{trans('messages.total_price')}}: <font color="red">{{trans('messages.price.symbol')}}{{$cart->subtotal()}}</font>
+                    共{{$cart->count()}}件商品&nbsp;&nbsp;&nbsp;{{trans('messages.total_price')}}: <span class="label label-warning">{{trans('messages.price.symbol')}}<span id="total-price">{{$cart->subtotal()}}</span></span>
                 </div>
                 @if (count($errors) > 0)
                 <div class="alert alert-danger">
@@ -112,12 +118,13 @@
 @section('scripts')
 <script>
 $().ready(function(){
-    $('#checkout-form').submit(function(){
-        if($('#payment').val() == '2'){
-            $('#paypal-form').submit();
-        }
-        //return false;
-    })
+    $('#deliver_type').change(function(event) {
+        var fee = parseFloat($(this).find('option:selected').attr('data-fee'));
+        var totalPrice = parseFloat($('#total-price').text());
+        //alert(fee);
+        $('#total-price').text((fee+totalPrice).toFixed(2))
+    });
+
 })
 </script>
 @endsection

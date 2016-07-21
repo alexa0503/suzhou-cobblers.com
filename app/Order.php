@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App;
 class Order extends Model
 {
     //
@@ -30,7 +30,7 @@ class Order extends Model
     ];
     public function getSubjectAttribute($vaule)
     {
-        return '阿里支付';
+        return 'Alipay';
     }
     public function products()
     {
@@ -39,5 +39,21 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo('App\User','user_id');
+    }
+    public function country()
+    {
+        return $this->hasOne('App\WorldCity','id','deliver_country_id');
+    }
+    public function city()
+    {
+        return $this->hasOne('App\WorldCity','id','deliver_city_id');
+    }
+    public function province()
+    {
+        return $this->hasOne('App\WorldCity','id','deliver_province_id');
+    }
+    public function deliver()
+    {
+        return $this->hasOne('App\DeliverType','id','deliver_type');
     }
 }

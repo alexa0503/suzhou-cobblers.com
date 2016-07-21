@@ -10,6 +10,7 @@ use App;
 use Session;
 use Carbon\Carbon;
 use DB;
+use App\Helpers\Helper;
 
 class ProductController extends Controller
 {
@@ -152,7 +153,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = App\Product::find($id);
+        $prices = Helper::priceConversion($product->prices);
+        $properties = Helper::propertyConversion($product->properties);
+        //var_dump($product->size_type);
+
+        return view('cms.product.show',['product'=>$product,'properties'=>$properties,'prices'=>$prices]);
     }
 
     /**

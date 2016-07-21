@@ -54,15 +54,19 @@ return [
     ],
     'order_status'=>[
         '-1'=>'Closed',
-        '0'=>'待付款',
-        '1'=>'待发货',
-        '2'=>'已发货',
-        '3'=>'已完成'
+        '0'=>'Pending payment',
+        '1'=>'Pending delivery',
+        '2'=>'Already delivery',
+        '3'=>'Complete'
     ],
     'pay_limit'=>'请于30分钟内支付',
     'created_at'=>'Created at',
     'order_no'=>'Order No.',
     'stock'=>'Inventory',
     'not_enough_goods'=>'There is not enough goods',
-    'buyer_message'=>'leave your message'
+    'buyer_message'=>'leave your message',
+    'account_manage'=>'Your Account',
+    'address'=>'Your Address',
+    'profile'=>'Your Profile',
+    'my_orders'=>'Your Orders'
 ];

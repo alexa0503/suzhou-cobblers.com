@@ -35,11 +35,13 @@
                                 </div>
                                 <div class="col-xs-4 col-lg-4 col-md-4">
                                     <select class="form-control" name="province_id" id="province">
+                                        <option value="">请选择省份</option>
                                     </select>
                                     <label class="help-block" for=""></label>
                                 </div>
                                 <div class="col-xs-4 col-lg-4 col-md-4">
                                     <select class="form-control" name="city_id" id="city">
+                                        <option value="">请选择城市/无</option>
                                     </select>
                                     <label class="help-block" for=""></label>
                                 </div>
@@ -157,6 +159,11 @@ $().ready(function(){
         var url = $('.address-radio:checked').attr('data-url');
         setAddress(url);
     }
+    else{
+        setCountry();
+        //setProvince();
+        //setCity();
+    }
 
     $('.setDefault').click(function(){
         var url = $(this).attr('href');
@@ -238,11 +245,6 @@ $().ready(function(){
                     setProvince();
                     setCity();
                 })
-
-
-
-
-
             }
         })
     }

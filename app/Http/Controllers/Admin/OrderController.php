@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App;
+use Mail;
 
 class OrderController extends Controller
 {
@@ -57,7 +58,24 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = App\Order::find($id);
+        if( $order->locale == 'zh-cn' ){
+            $order->detail_address = $order->country->name_cn.','.$order->province->name_cn;
+            if( $order->city != null ){
+                $order->detail_address .= ','.$order->city->name_cn;
+            }
+            $order->detail_address .= $order->deliver_address;
+        }
+        else{
+            $order->detail_address = $order->deliver_address;
+            if( $order->city != null ){
+                $order->detail_address .= ','.$order->city->name_en;
+            }
+            $order->detail_address .= ','.$order->province->name_en.','.$order->country->name_en;
+        }
+
+        $order->price_symbol = $order->locale == 'zh-cn' ? '￥' : '$';
+        return view('cms.order.show',['order'=>$order]);
     }
 
     /**
@@ -80,7 +98,17 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = App\Order::find($id);
+        if($order->status == 1){
+            $this->validate($request, [
+                'deliver_no' => 'required|max:60',
+            ]);
+            $order->deliver_no = $request->input('deliver_no');
+        }
+        $order->status = $request->input('status');
+        $order->save();
+        return [];
+
     }
 
     /**

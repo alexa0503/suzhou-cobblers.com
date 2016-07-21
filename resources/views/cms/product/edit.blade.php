@@ -154,7 +154,7 @@ $(document).ready(function() {
         success: function() {
             $('#form .form-group .help-block').empty();
             $('#form .form-group').removeClass('has-error');
-            location.href='{{route("admin.product.index")}}';
+            location.href='{{route("admin.product.show",["id"=>$product->id])}}';
         },
         error: function(xhr){
             var json = jQuery.parseJSON(xhr.responseText);

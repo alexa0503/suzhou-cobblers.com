@@ -3,7 +3,7 @@
 return [
 
 	// The default gateway to use
-	'default' => 'alipay',
+	'default' => 'paypal',
 
 	// Add in each gateway here
 	'gateways' => [
@@ -14,9 +14,9 @@ return [
 				'landingPage'    => ['Billing', 'Login'],
 				//'headerImageUrl' => '',
 				'testMode' => true,
-				'username' => 'wanga503_api1.outlook.com',
-				'password' => '4EJD4PL8MY7728PY',
-				'signature' => 'AFcWxV21C7fd0v3bYYYRCpSSRl31AVIQGUkRv-6UA72GyUIXh0zspm0J'
+				'username' => 'wanga503-test_api1.outlook.com',//
+				'password' => '892NFR9D7BUZBZZV',
+				'signature' => 'AFcWxV21C7fd0v3bYYYRCpSSRl31AJ23cSbcrjCHuDRf6U8dtqC29mRH'
 			]
 		],
 		'alipay' => [

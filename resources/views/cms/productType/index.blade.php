@@ -39,8 +39,8 @@
                                     <td>--</td>
                                     @endif
                                     <td>
-                                        <a href="{{route('admin.products.type.edit',['id'=>$type->id])}}" class="btn btn-sm btn-info">编辑</a>
-                                            <a href="{{route('admin.products.type.destroy',['id'=>$type->id])}}" class="btn btn-sm btn-info delete">删除</a>
+                                        <a href="{{route('admin.products.type.edit',['id'=>$type->id])}}" class="btn btn-xs btn-default">编辑</a>
+                                            <a href="{{route('admin.products.type.destroy',['id'=>$type->id])}}" class="btn btn-xs btn-warning delete">删除</a>
                                     </td>
                                 </tr>
                                 @endforeach

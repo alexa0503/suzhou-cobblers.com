@@ -63,5 +63,9 @@ return [
     'order_no'=>'订单编号',
     'stock'=>'库存',
     'not_enough_goods'=>'没有足够的库存',
-    'buyer_message'=>'买家留言'
+    'buyer_message'=>'买家留言',
+    'account_manage'=>'账户管理',
+    'address'=>'地址管理',
+    'profile'=>'个人信息',
+    'my_orders'=>'我的订单'
 ];

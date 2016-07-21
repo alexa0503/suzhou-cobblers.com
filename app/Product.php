@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    public function getStatusTitleAttribute($value)
+    {
+        return $this->is_active == 1 ? '正常' : '禁用';
+    }
     public function getPreviewImageAttribute($value)
     {
         return isset($this->thumb) ? $this->thumb->image_path : null;
