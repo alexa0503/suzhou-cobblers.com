@@ -21,7 +21,7 @@
                             <div class="panel-body">
                                 {{ Form::open(array('route' => ['admin.order.update',$order->id], 'class'=>'form-horizontal group-border stripped', 'method'=>'PUT', 'id'=>'form')) }}
                                   <div class="form-group">
-                                    <label for="inputEmail3" class="col-lg-2 col-md-3 control-label">订单编号</label>
+                                    <label for="" class="col-lg-2 col-md-3 control-label">订单编号</label>
                                     <div class="col-lg-10 col-md-9">
                                         <p class="form-control-static">{{$order->order_no}}</p>
                                     </div>

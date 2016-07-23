@@ -38,7 +38,7 @@
                         <div class="checkbox-custom">
                             <!--<input type="checkbox" name="remember" id="remember" value="option">
                             <label for="remember">记住我 ?</label>-->
-                            <a href="#">{{trans('messages.forgot_password')}}</a>
+                            <a href="{{url('password/reset')}}">{{trans('messages.forgot_password')}}</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 mb25">

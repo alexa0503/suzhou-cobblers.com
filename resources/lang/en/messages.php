@@ -55,7 +55,7 @@ return [
     'order_status'=>[
         '-1'=>'Closed',
         '0'=>'Pending payment',
-        '1'=>'Pending delivery',
+        '1'=>'Waiting for delivery',
         '2'=>'Already delivery',
         '3'=>'Complete'
     ],
@@ -66,7 +66,22 @@ return [
     'not_enough_goods'=>'There is not enough goods',
     'buyer_message'=>'leave your message',
     'account_manage'=>'Your Account',
-    'address'=>'Your Address',
+    'address'=>'Your Address Book',
     'profile'=>'Your Profile',
-    'my_orders'=>'Your Orders'
+    'my_orders'=>'Your Orders',
+    'your_addresses'=>'Your Addresses',
+    'save'=>'Save',
+    'select_country'=>'Please select your country',
+    'select_porvince'=>'Please select your province',
+    'select_city'=>'Please select your city/None',
+    'deliver_district'=>'Deliver district',
+    'zip'=>'ZIP',
+    'detailed_address'=>'Detailed address',
+    'full_name'=>'Full name',
+    'first_name'=>'First name',
+    'last_name'=>'Last name',
+    'phone_number'=>'Phone number',
+    'name' => 'Name',
+    'email' => 'Email',
+    'updated_at' => 'Updated at'
 ];

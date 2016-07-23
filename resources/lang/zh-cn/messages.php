@@ -67,5 +67,20 @@ return [
     'account_manage'=>'账户管理',
     'address'=>'地址管理',
     'profile'=>'个人信息',
-    'my_orders'=>'我的订单'
+    'my_orders'=>'我的订单',
+    'your_addresses'=>'地址管理',
+    'save'=>'保存',
+    'select_country'=>'请选择国家',
+    'select_porvince'=>'请选择省份',
+    'select_city'=>'请选择城市/无',
+    'deliver_district'=>'所在地区',
+    'zip'=>'邮政编码',
+    'detailed_address'=>'详细地址',
+    'full_name'=>'收货人姓名',
+    'first_name'=>'名',
+    'last_name'=>'姓',
+    'phone_number'=>'联系电话',
+    'name' => '用户名',
+    'email' => '电子邮箱',
+    'updated_at' => '最后登录时间'
 ];

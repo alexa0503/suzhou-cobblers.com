@@ -26,12 +26,13 @@ Route::get('/_locale/{locale?}/{url?}', function ($locale = 'en', $url = null) {
 });
 
 Route::group(['middleware' => ['locale','menu','auth:web']], function () {
-    route::any('pay/return/{payment}/{id}',['as'=>'pay.return','uses'=>'PayController@index']);
-    route::any('pay/notify/{payment}/{id}',['as'=>'pay.notify','uses'=>'PayController@notify']);
-    route::any('pay/cancel/{payment}/{id}',['as'=>'pay.cancel','uses'=>'PayController@cancel']);
+    Route::any('pay/return/{payment}/{id}',['as'=>'pay.return','uses'=>'PayController@index']);
+    Route::any('pay/cancel/{payment}/{id}',['as'=>'pay.cancel','uses'=>'PayController@cancel']);
     //账户管理
-    Route::get('account/addresses','IndexController@indexAddress');
-    Route::get('account','IndexController@account')->name('account');
+    Route::controller('account', 'AccountController',[
+        'getProfile'=>'account.profile',
+    ]);
+    //Route::get('account','IndexController@account')->name('account');
     //地址api
     Route::get('api/address/{id}', 'IndexController@address')->name('api.address');
     Route::get('api/cities', 'IndexController@cities')->name('api.cities');
@@ -42,12 +43,15 @@ Route::group(['middleware' => ['locale','menu','auth:web']], function () {
     //订单地址管理
     Route::get('/order/address', 'OrderController@address')->name('order.address.index');
     Route::post('/order/address', 'OrderController@postAddress')->name('order.address.store');
-    Route::put('/order/address/{id}/default', 'OrderController@setDefaultAddress')->name('order.address.default');
-    Route::delete('/order/address/{id}', 'OrderController@deleteAddress')->name('order.address.delete');
+    //Route::put('/order/address/{id}/default', 'OrderController@setDefaultAddress')->name('order.address.default');
+    //Route::delete('/order/address/{id}', 'OrderController@deleteAddress')->name('order.address.delete');
+    Route::put('address/default/{id}',['as'=>'address.default','uses'=>'AddressController@default']);
     Route::resource('order', 'OrderController');
+    Route::resource('address', 'AddressController');
 
 });
 Route::group(['middleware' => ['locale','menu']], function () {
+    route::any('pay/notify/{payment}/{id}',['as'=>'pay.notify','uses'=>'PayController@index']);
     Route::auth('web');
     Route::get('/admin/login', 'Admin\AuthController@getLogin');
     Route::post('/admin/login', 'Admin\AuthController@postLogin');

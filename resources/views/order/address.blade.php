@@ -16,7 +16,7 @@
                             @foreach ($addresses as $address)
                             <div class="radio-custom">
                                 <input data-url="{{route('api.address',['id'=>$address->id])}}" type="radio" name="id" @if ($address->is_default == 1){{'checked="checked"'}}@endif value="{{$address->id}}" class="address-radio" id="address-radio-{{$address->id}}">
-                                <label for="address-radio-{{$address->id}}">{{$address->country->name}}@if ($address->province != null),{{$address->province->name}}@endif @if ($address->city != null),{{$address->city->name}}@endif,{{$address->detailed_address}}</label> <a href="{{route('order.address.default',['id'=>$address->id])}}" class="setDefault">[设为默认]</a> <a href="{{route('order.address.delete',['id'=>$address->id])}}" class="addressDelete">[删除]</a>
+                                <label for="address-radio-{{$address->id}}">{{$address->country->name}}@if ($address->province != null),{{$address->province->name}}@endif @if ($address->city != null),{{$address->city->name}}@endif,{{$address->detailed_address}}</label> 
                             </div>
                             @endforeach
                         </div>
@@ -88,19 +88,8 @@
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 control-label" for="">联系电话</label>
                         <div class="col-lg-10 col-md-9">
-                            <div class="row">
-                                <div class="col-xs-4 col-lg-2 col-md-3">
-                                    <select class="form-control" name="phone_district">
-                                        <option value="+86">中国大陆 +86</option>
-                                        <option value="+86">香港 +852</option>
-                                    </select>
-                                    <label class="help-block" for=""></label>
-                                </div>
-                                <div class="col-xs-8 col-lg-10 col-md-9">
-                                    <input class="form-control" type="text" name="phone_number">
-                                    <label class="help-block" for=""></label>
-                                </div>
-                            </div>
+                            <input class="form-control" type="text" name="phone_number">
+                            <label class="help-block" for=""></label>
                         </div>
                     </div>
                     <!-- End .form-group  -->
@@ -147,7 +136,7 @@ $().ready(function(){
         province_id = null;
         city_id = null;
         setProvince();
-        setCity();
+        //setCity();
     })
     $('#province').change(function(){
         province_id = $(this).val();

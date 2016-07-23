@@ -14,22 +14,12 @@ class DeliverAddress extends Model
         'zip_code',
         'first_name',
         'last_name',
-        'phone_district',
+        //'phone_district',
         'phone_number',
         'user_id',
         'locale',
         'is_default',
     ];
-    public function getPhoneDistrictAttribute($value)
-    {
-        $arr = explode(' ',$value);
-        return $arr[0];
-    }
-    public function getPhoneNumberAttribute($value)
-    {
-        $arr = explode(' ',$value);
-        return $arr[1];
-    }
     public function country()
     {
         return $this->hasOne('App\WorldCity','id','country_id');

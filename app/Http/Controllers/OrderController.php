@@ -120,7 +120,7 @@ class OrderController extends Controller
             'consignee_last_name'=>$address->last_name,
             'consignee_first_name'=>$address->first_name,
             'consignee_zip_code'=>$address->zip_code,
-            'consignee_phone_number'=>$address->phone_district.' '.$address->phone_number,
+            'consignee_phone_number'=>$address->phone_number,
             'deliver_address'=>$address->detailed_address,
             'deliver_country_id'=>$address->country_id,
             'deliver_province_id'=>$address->province_id,
@@ -214,15 +214,13 @@ class OrderController extends Controller
             'zip_code' => 'required|numeric',
             'first_name' => 'required|max:60',
             'last_name' => 'required|max:60',
-            'phone_district'=>'required',
             'phone_number'=>'required|numeric',
         ]);
         $data = $request->all();
         unset($data['_token']);
-        $data['phone_number'] = $data['phone_district'].' '.$data['phone_number'];
+        //$data['phone_number'] = $data['phone_district'].' '.$data['phone_number'];
         $data['user_id'] = Auth::guard('web')->user()->id;
         $data['locale'] = App::getLocale();
-        unset($data['phone_district']);
         $address = App\DeliverAddress::firstOrCreate($data);
         return ['ret'=>0,'data'=>['id'=>$address->id]];
     }
@@ -273,7 +271,7 @@ class OrderController extends Controller
         $address = App\DeliverAddress::findOrFail($id);
         $address->is_default = 1;
         $address->save();
-        return [‘ret’=>0];
+        return ['ret'=>0];
     }
     public function deleteAddress(Request $request, $id = null)
     {
