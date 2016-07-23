@@ -84,7 +84,7 @@ class AddressController extends Controller
         $world_cities = json_encode(Cache::get($cache_name));
         $address = App\DeliverAddress::find($id);
         if($address->user_id != $user_id || $address->locale != $locale){
-            return redirect('address.index');
+            return redirect('address');
         }
         return view('address.edit',[
             'world_cities'=>$world_cities,
@@ -106,7 +106,7 @@ class AddressController extends Controller
         $world_cities = json_encode(Cache::get($cache_name));
         $address = App\DeliverAddress::find($id);
         if($address->user_id != $user_id || $address->locale != $locale){
-            return redirect('address.index');
+            return redirect('address');
         }
         return view('address.edit',[
             'world_cities'=>$world_cities,

@@ -16,7 +16,7 @@
                             @foreach ($addresses as $address)
                             <div class="radio-custom">
                                 <input data-url="{{route('api.address',['id'=>$address->id])}}" type="radio" name="id" @if ($address->is_default == 1){{'checked="checked"'}}@endif value="{{$address->id}}" class="address-radio" id="address-radio-{{$address->id}}">
-                                <label for="address-radio-{{$address->id}}">{{$address->country->name}}@if ($address->province != null),{{$address->province->name}}@endif @if ($address->city != null),{{$address->city->name}}@endif,{{$address->detailed_address}}</label> 
+                                <label for="address-radio-{{$address->id}}">{{$address->country->name}}@if ($address->province != null),{{$address->province->name}}@endif @if ($address->city != null),{{$address->city->name}}@endif,{{$address->detailed_address}}</label>
                             </div>
                             @endforeach
                         </div>
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="col-xs-6 col-lg-6 col-md-6">
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-submit">{{trans('messages.save_next')}}</button>
+                                        <button type="submit" class="btn btn-info btn-submit disabled" disabled="disabled">{{trans('messages.save_next')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -120,17 +120,11 @@
 @endsection
 @section('scripts')
 <script src="{{asset('assets/js/jquery.form.js')}}"></script>
+@include('address.js')
 <script>
 $().ready(function(){
 
     var checked_id = null;
-
-    var world_cities = {!! $world_cities !!};
-    var country_id = null;
-    var province_id = null;
-    var city_id = null
-
-
     $('#country').change(function(){
         country_id = $(this).val();
         province_id = null;
@@ -150,6 +144,7 @@ $().ready(function(){
     }
     else{
         setCountry();
+        $('button.disabled').prop('disabled',false).removeClass('disabled');
         //setProvince();
         //setCity();
     }
@@ -233,46 +228,11 @@ $().ready(function(){
                     setCountry();
                     setProvince();
                     setCity();
+                    $('button.disabled').prop('disabled',false).removeClass('disabled');
                 })
             }
         })
     }
-
-    function setCountry()
-    {
-        $('#country').html('<option value="">请选择国家</option>');
-        $.each(world_cities,function(key,value){
-            $('#country').append('<option value="'+key+'">'+value.name+'</option>');
-            $('#country').val(country_id);
-        })
-    }
-    function setProvince()
-    {
-        $('#province').html('<option value="">请选择省份</option>');
-        if( world_cities[country_id] ){
-            $.each(world_cities[country_id].provinces,function(key,value){
-                $('#province').append('<option value="'+key+'">'+value.name+'</option>');
-                if( province_id ){
-                    $('#province').val(province_id);
-                }
-
-            })
-        }
-    }
-    function setCity()
-    {
-        $('#city').html('<option value="">请选择城市/无</option>');
-        if( world_cities[country_id].provinces[province_id] ){
-            $.each(world_cities[country_id].provinces[province_id].cities,function(key,value){
-                $('#city').append('<option value="'+key+'">'+value.name+'</option>');
-                if( city_id ){
-                    $('#city').val(city_id);
-                }
-
-            })
-        }
-    }
-	//$("#mask-phone").mask("(999) 999-9999", {completed:function(){alert("Callback action after complete");}});
 })
 </script>
 @endsection
