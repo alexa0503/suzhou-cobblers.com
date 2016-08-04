@@ -11,4 +11,12 @@ class DeliverFee extends Model
     {
         return json_decode($value,true);
     }
+    public function type()
+    {
+        return $this->belongsTo('App\DeliverType','type_id');
+    }
+    public function city()
+    {
+        return $this->belongsTo('App\WorldCity','city_id');
+    }
 }

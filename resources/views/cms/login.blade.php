@@ -24,12 +24,6 @@
     <link href="{{asset('assets/cms/css/main.css')}}" rel="stylesheet" />
     <!-- Custom stylesheets ( Put your own changes here ) -->
     <link href="{{asset('assets/cms/css/custom.css')}}" rel="stylesheet" />
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/cms/img/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets/cms/img/ico/apple-touch-icon-114-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/cms/img/ico/apple-touch-icon-72-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/cms/img/ico/apple-touch-icon-57-precomposed.png')}}">
-    <link rel="icon" href="{{asset('assets/cms/img/ico/favicon.ico')}}" type="image/png">
     <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
     <meta name="msapplication-TileColor" content="#3399cc" />
 </head>
@@ -40,7 +34,8 @@
         <!-- Start .panel -->
         <div class="panel-heading">
             <h4 class="panel-title text-center">
-                <img id="logo" src="{{asset('assets/cms/img/logo-dark.png')}}"alt="Dynamic logo">
+                <!--<img id="logo" src="{{asset('assets/cms/img/logo-dark.png')}}"alt="Dynamic logo">-->
+                {{env('PAGE_TITLE')}} - 后台管理
             </h4>
         </div>
         <div class="panel-body">

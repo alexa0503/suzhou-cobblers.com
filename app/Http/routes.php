@@ -102,6 +102,8 @@ Route::group(['middleware' => ['locale','menu', 'auth:admin']], function () {
     Route::resource('/admin/press', 'Admin\PressController');
     Route::resource('admin/order', 'Admin\OrderController');
     Route::resource('admin/user', 'Admin\UserController');
+    Route::resource('admin/deliver/fee', 'Admin\DeliverFeeController');
+    Route::resource('admin/deliver/type', 'Admin\DeliverTypeController');
     //Route::post('/admin/file/upload', 'AdminController@fileUpload')->name('admin_file_upload');
     //Route::post('/admin/file/delete', 'AdminController@fileDelete')->name('admin_file_delete');
 });

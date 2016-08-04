@@ -45,6 +45,12 @@ class MenuMiddleware
             $product_item->add('查看', route('admin.product.index'));
             $product_item->add('添加', route('admin.product.create'));
 
+            $product_item = $menu->add('运费管理', '#');
+            $product_item->add('查看', route('admin.deliver.fee.index'));
+            $product_item->add('添加', route('admin.deliver.fee.create'));
+            $product_item = $menu->add('快递方式', '#')->divide();
+            $product_item->add('查看', route('admin.deliver.type.index'));
+            $product_item->add('添加', route('admin.deliver.type.create'));
 
             $page_item = $menu->add('页面管理', '#');
             $pages = App\Page::all();
