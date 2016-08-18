@@ -13,10 +13,10 @@ return [
 				'solutionType'   => ['Sole', 'Mark'],
 				'landingPage'    => ['Billing', 'Login'],
 				//'headerImageUrl' => '',
-				'testMode' => true,
-				'username' => 'wanga503-test_api1.outlook.com',//
-				'password' => '892NFR9D7BUZBZZV',
-				'signature' => 'AFcWxV21C7fd0v3bYYYRCpSSRl31AJ23cSbcrjCHuDRf6U8dtqC29mRH'
+				'testMode' => false,//true
+				'username' => 'suzhou_cobblers_api1.yahoo.com',//wanga503-test_api1.outlook.com
+				'password' => 'UPY3XZKWPWK8FDUL',//892NFR9D7BUZBZZV
+				'signature' => 'AFi0V0uf6HmilKqFDdA50XrW8niNA12vfBY40H34smomGRrA2U.HZYH-'//AFcWxV21C7fd0v3bYYYRCpSSRl31AJ23cSbcrjCHuDRf6U8dtqC29mRH
 			]
 		],
 		'alipay' => [
