@@ -148,6 +148,7 @@ class DeliverFeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        App\DeliverFee::destroy($id);
+        return ['ret'=>0];
     }
 }
