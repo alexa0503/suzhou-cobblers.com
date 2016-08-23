@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use App;
-use Cache;
+use App\Helpers\Helper;
 
 class AddressController extends Controller
 {
@@ -32,8 +32,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        $cache_name = 'cities.'.App::getLocale();
-        $world_cities = json_encode(Cache::get($cache_name));
+        $world_cities = Helper::getWorldCities(App::getLocale());
         return view('address.create',[
             'world_cities'=>$world_cities
         ]);
@@ -80,8 +79,8 @@ class AddressController extends Controller
     {
         $user_id = Auth::guard('web')->user()->id;
         $locale = App::getLocale();
-        $cache_name = 'cities.'.App::getLocale();
-        $world_cities = json_encode(Cache::get($cache_name));
+
+        $world_cities = Helper::getWorldCities($locale);
         $address = App\DeliverAddress::find($id);
         if($address->user_id != $user_id || $address->locale != $locale){
             return redirect('address');
@@ -102,8 +101,7 @@ class AddressController extends Controller
     {
         $user_id = Auth::guard('web')->user()->id;
         $locale = App::getLocale();
-        $cache_name = 'cities.'.App::getLocale();
-        $world_cities = json_encode(Cache::get($cache_name));
+        $world_cities = Helper::getWorldCities($locale);
         $address = App\DeliverAddress::find($id);
         if($address->user_id != $user_id || $address->locale != $locale){
             return redirect('address');

@@ -13,7 +13,7 @@ use Auth;
 use Validator;
 use DB;
 use Omnipay\Omnipay;
-use Cache;
+use App\Helpers\Helper;
 
 class OrderController extends Controller
 {
@@ -234,29 +234,7 @@ class OrderController extends Controller
         $addresses = App\DeliverAddress::where('locale', $locale)
             ->where('user_id', $user_id)->get();
 
-        //Cache::forget('cities');
-        $cache_name = 'cities.'.App::getLocale();
-        if (!Cache::has($cache_name)){
-            $collection = App\WorldCity::where('parent_id',null)->get();
-            $data = $collection->keyBy('id')->map(function($item){
-                $collection = $item->sub;
-                $provinces = $collection->keyBy('id')->map(function($item){
-                    $collection = $item->sub;
-                    $cities = $collection->keyBy('id')->map(function($item){
-                        return ['name'=>$item->name];
-                    });
-                    return ['name'=>$item->name,'cities'=>$cities];
-                });
-
-                return ['name'=>$item->name,'provinces'=>$provinces];
-            });
-
-            Cache::forever($cache_name, $data);
-        }
-        $world_cities = json_encode(Cache::get($cache_name));
-
-        //return Cache::get($cache_name);
-
+        $world_cities = Helper::getWorldCities(App::getLocale());
         return view('order.address',[
             'addresses' => $addresses,
             'world_cities'=>$world_cities

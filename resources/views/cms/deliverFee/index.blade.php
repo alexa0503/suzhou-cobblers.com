@@ -35,7 +35,9 @@
                                     <td>{{json_encode($fee->value)}}</td>
                                     <td>
                                         <a href="{{route('admin.deliver.fee.edit',['id'=>$fee->id])}}" class="btn btn-xs btn-default">编辑</a>
-                                            <a href="{{route('admin.deliver.fee.destroy',['id'=>$fee->id])}}" class="btn btn-xs btn-warning delete">删除</a>
+                                        @if ($fee->id != 1 AND $fee->id != 2)
+                                        <a href="{{route('admin.deliver.fee.destroy',['id'=>$fee->id])}}" class="btn btn-xs btn-warning delete">删除</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -8,7 +8,7 @@
                 <!-- Start .page-content-inner -->
                 <div id="page-header" class="clearfix">
                     <div class="page-header">
-                        <h2>产品管理<small>@if (App::getLocale() == 'zh-cn') 中文 @else 英文 @endif</small></h2>
+                        <h2>媒体管理<small></h2>
                     </div>
 
                 </div>
@@ -23,7 +23,7 @@
                                     <div class="col-md-2 col-xs-12 ">
                                         <form method="get" enctype="application/x-www-form-urlencoded" id="form-type" class="form-inline">
                                             <select name="type"  class="form-control input-md" id="press-type">
-                                                <option value="">选择分类/所有</option>
+                                                <option value="">选择分类/主分类</option>
                                                 @foreach ($types as $type)
                                                 <option value="{{$type->id}}" @if (Request::get('type') == $type->id)selected="selected"@endif>{{$type->title}}</option>
                                                 @endforeach

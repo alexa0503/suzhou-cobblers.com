@@ -55,7 +55,23 @@ class DeliverFeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'type' => 'required',
+            'country' => 'required',
+        ]);
+        $data = $request->all();
+        $value = [];
+        foreach($data['value'] as $k=>$v){
+            $value[$data['key'][$k]] = $v;
+        }
+        $form_data = [];
+        $form_data['type_id'] = $data['type'];
+        $form_data['value'] = json_encode($value);
+        $form_data['city_id'] = null == $data['province'] ? $data['country'] : $data['province'];
+
+        App\DeliverFee::firstOrCreate($form_data);
+
+        return ['ret'=>0];
     }
 
     /**
@@ -77,7 +93,23 @@ class DeliverFeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $types = App\DeliverType::all();
+        $countries = App\WorldCity::whereNull('parent_id')->get();
+        $json_provinces = [];
+        foreach($countries as $country){
+            $provinces = $country->sub->map(function($item,$key){
+                return ['id'=>$item->id,'name'=>$item->name_cn];
+            });
+            $json_provinces[$country->id] = $provinces->all();
+        }
+        $fee = App\DeliverFee::find($id);
+
+        return view('cms.deliverFee.edit',[
+            'types'=>$types,
+            'countries'=>$countries,
+            'json_provinces'=>json_encode($json_provinces),
+            'fee'=>$fee,
+        ]);
     }
 
     /**
@@ -89,7 +121,23 @@ class DeliverFeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'type' => 'required',
+            'country' => 'required',
+        ]);
+        $data = $request->all();
+        $fee = App\DeliverFee::find($id);
+        $value = [];
+        foreach($data['value'] as $k=>$v){
+            $value[$data['key'][$k]] = $v;
+        }
+
+        $fee->type_id = $data['type'];
+        $fee->city_id = null == $data['province'] ? $data['country'] : $data['province'];
+        $fee->value = json_encode($value);
+        $fee->save();
+
+        return ['ret'=>0];
     }
 
     /**

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DeliverFee extends Model
 {
     public $timestamps = false;
+    protected $fillable =  ['value', 'type_id', 'city_id'];
     public function getValueAttribute($value)
     {
         return json_decode($value,true);

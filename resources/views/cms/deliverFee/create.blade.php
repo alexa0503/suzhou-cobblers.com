@@ -18,7 +18,7 @@
                         <div class="panel panel-default">
                             <!-- Start .panel -->
                             <div class="panel-body pt0 pb0">
-                                {{ Form::open(array('route' => ['admin.products.type.store'], 'class'=>'form-horizontal group-border stripped', 'id'=>'form', 'role'=>'form')) }}
+                                {{ Form::open(array('route' => ['admin.deliver.fee.store'], 'class'=>'form-horizontal group-border stripped', 'id'=>'form', 'role'=>'form')) }}
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">快递方式</label>
                                         <div class="col-lg-10 col-md-9">
@@ -119,7 +119,7 @@ $(document).ready(function() {
         success: function() {
             $('#form .form-group .help-block').empty();
             $('#form .form-group').removeClass('has-error');
-            location.href='{{route("admin.products.type.index")}}';
+            location.href='{{route("admin.deliver.fee.index")}}';
         },
         error: function(xhr){
             var json = jQuery.parseJSON(xhr.responseText);
