@@ -30,7 +30,8 @@ class DeliverTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('cms.deliverType.create',[
+        ]);
     }
 
     /**
@@ -41,7 +42,17 @@ class DeliverTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'locale' => 'required',
+        ]);
+        $form_data = [
+            'name' => $request->get('name'),
+            'locale' => $request->get('locale'),
+        ];
+        App\DeliverType::firstOrCreate($form_data);
+
+        return ['ret'=>0];
     }
 
     /**
@@ -63,7 +74,11 @@ class DeliverTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $type = App\DeliverType::find($id);
+        return view('cms.deliverType.edit',[
+            'type'=>$type,
+        ]);
     }
 
     /**
@@ -75,7 +90,16 @@ class DeliverTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'locale' => 'required',
+        ]);
+        $type = App\DeliverType::find($id);
+        $type->name = $request->get('name');
+        $type->locale = $request->get('locale');
+        $type->save();
+
+        return ['ret'=>0];
     }
 
     /**
@@ -86,6 +110,11 @@ class DeliverTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $count = App\DeliverFee::where('type_id', $id)->count();
+        if($count > 0){
+            return ['ret'=>1001,'msg'=>'该分类下存在对应的运费设置，无法删除~'];
+        }
+        App\DeliverType::destroy($id);
+        return ['ret'=>0];
     }
 }
