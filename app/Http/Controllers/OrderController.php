@@ -172,8 +172,8 @@ class OrderController extends Controller
             $gateway->setPartner($config['partner']);
             $gateway->setKey($config['partner']);
             $gateway->setSellerEmail($config['sellerEmail']);
-            $gateway->setReturnUrl(route('pay.return',['payment'=>'alipay']));
-            $gateway->setNotifyUrl(route('pay.notify',['payment'=>'alipay']));
+            $gateway->setReturnUrl(route('pay.return',['payment'=>'alipay','id'=>$order->id]));
+            $gateway->setNotifyUrl(route('pay.notify',['payment'=>'alipay','id'=>$order->id]));
             $options = [
                 'out_trade_no' => $order->order_no,
                 'subject' => $order->subject,
