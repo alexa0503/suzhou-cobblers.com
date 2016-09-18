@@ -1,14 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div>
-        <img src="/assets/images/space.gif" height="80" />
-    </div>
-    <div class="row">
-        <div class="text-center">
-            <a href="{{url('/')}}"><img src="/assets/images/homepage.gif" /></a>
-        </div>
-    </div>
+    <a href="{{url('/types')}}"><img src="/assets/images/homepage.gif" style="margin-top:100px;margin-bottom:100px;" /></a>
 </div>
 @endsection
 @section('scripts')

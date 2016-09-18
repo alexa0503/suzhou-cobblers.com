@@ -64,8 +64,8 @@ class ProductController extends Controller
             'product_size_type' => 'exists:product_size_types,id',
             'price' => 'required|numeric',
             'desc' => 'required',
-            'return_desc' => 'required',
-            'clean_desc' => 'required',
+            //'return_desc' => 'required',
+            //'clean_desc' => 'required',
             //'thumb' => 'mimes:jpeg,bmp,png,gif',
         ]);
 
@@ -195,8 +195,8 @@ class ProductController extends Controller
             'product_size_type' => 'exists:product_size_types,id',
             'price' => 'required|numeric',
             'desc' => 'required',
-            'return_desc' => 'required',
-            'clean_desc' => 'required',
+            //'return_desc' => 'required',
+            //'clean_desc' => 'required',
             //'thumb' => 'mimes:jpeg,bmp,png,gif',
         ]);
 
