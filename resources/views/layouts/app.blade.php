@@ -110,7 +110,10 @@
 	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 	            }
 	        });
-			
+			var h = $(window).height() - $('#footer').height() - 259;
+			if ($('#mainContet').height() < $(window).height() - 400) {
+				$('#mainContet').height(h);
+			}
 
 		    var url = '{{route("cart.count")}}';
 		    $.getJSON(url,function(json){
