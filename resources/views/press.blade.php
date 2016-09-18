@@ -2,11 +2,10 @@
 @section('content')
 <div class="container">
     @foreach ($types as $type)
+    <div class="rows"><h4 style="font-weight:normal;">{{$type->title}}</h4></div>
     <div class="row press">
         <div class="col-xs-offset-0 col-xs-3 col-md-3 col-md-offset-0">
-
             <img src="{{asset($type->thumb)}}">
-            <h5>National Geographic Traveler</h5>
         </div>
         <div class="col-xs-9 col-md-9">
             <div class="row">
