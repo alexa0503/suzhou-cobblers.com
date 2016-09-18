@@ -22,6 +22,8 @@ class LocaleMiddleware
         if( !$request->hasCookie('locale')){
             $locale = 'en';
         }
+        if( null == Session::get('locale.language') )
+            Session::set('locale.language', $locale);
         App::setLocale($locale);
         return $next($request);
     }
