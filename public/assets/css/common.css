@@ -11,7 +11,7 @@ html,body{
     float: left;
     margin-left: 0px;
     border-color: #389ebd;
-    margin-top:60px;
+    margin-top:10px;
 }
 #navbar-custom .navbar-toggle .icon-bar {
     background-color: #FFFFFF;
@@ -38,6 +38,7 @@ html,body{
     background: #66ffff;
 }
 .page-header a {
+    font-size:1.2em;
     color: #000000;
     text-decoration: underline;
 }
@@ -273,6 +274,7 @@ html,body{
 #nav-bottom .nav-justified > li {
     display: table-cell;
     width: 1%;
+    font-size: 1.5em;
 }
 #nav-bottom .nav-justified > li > a {
     margin-bottom: 0;
@@ -285,4 +287,7 @@ html,body{
 #nav-bottom .nav-tabs-justified > .active > a:hover,
 #nav-bottom .nav-tabs-justified > .active > a:focus {
     border-bottom-color: #fff;
+}
+#nav-bottom .nav-justified >li >ul {
+    font-size: 1em;
 }
