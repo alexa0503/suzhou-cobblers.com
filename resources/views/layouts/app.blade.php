@@ -110,7 +110,7 @@
 	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 	            }
 	        });
-			var h = $(window).height() - $('#footer').height() - 259;
+			var h = $(window).height() - $('#footer').height() - 279;
 			if ($('#mainContet').height() < $(window).height() - 400) {
 				$('#mainContet').height(h);
 			}
