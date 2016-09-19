@@ -15,8 +15,7 @@
             </div>
             <div class="col-md-8 col-xs-12">
                 <div class="row">
-                    <h4>{{$product->title}}</h4></div>
-                <div class="row">
+                    <h3 style="margin:-10px 0 20px 0;">{{$product->title}}</h3>
                     <div class="item-gallery col-md-6">
                         <div class="item-image">
                             <img src="{{asset('assets/images/space.gif')}}" width="300" height="300">
@@ -28,39 +27,33 @@
                         </div>
                     </div>
                     <div class="item-description col-md-6">
-                        <div class="desc1">
-                            Price: {{trans('messages.price.word_symbol')}}{{$product->price}}
+                        <h3>{{$product->title}}<small>{{trans('messages.stock')}}:{{$product->stock}}</small><h3>
+                        <h4>Price: {{trans('messages.price.word_symbol')}}{{$product->price}}<h4>
+                        <!--<span class="label label-info">{{trans('messages.stock')}}: {{$product->stock}}</span>-->
+                        <div class="rows">
+                            <ul class="list-group list-inline">
+                                <li><select name="size" id="item-size">
+                                <option value="">{{trans('messages.select_size')}}</option>
+                                    @foreach ($product->sizes as $size_type)
+                                    <option value="{{$size_type}}">{{$size_type}}</option>
+                                    @endforeach
+                                </select></li>
+                                <li><a href="#">{{trans('messages.check_size')}}</a></li>
+                                <li><div style="width:120px;padding:0;">
+                                    <input name="num" class="" id="item-num" value="1" size="6"></div>
+                                <div class="clearfix"></div></li>
+                            </ul>
                         </div>
-                        <div class="desc2">
-                            {!! $product->desc !!}
-                        </p>
-                        <div class="desc2">
-                            ＊{{trans('messages.return_desc')}}：{{$product->return_desc}}
-                        </div>
-                        <div class="desc2">
-                            ＊{{trans('messages.clean_desc')}}：{{$product->clean_desc}}
-                        </div>
-                        <div class="desc2">
-                            <span class="label label-info">{{trans('messages.stock')}}: {{$product->stock}}</span>
-                        </div>
-                        <div class="desc2">
-                            <select name="size" id="item-size">
-                            <option value="">{{trans('messages.select_size')}}</option>
-                                @foreach ($product->sizes as $size_type)
-                                <option value="{{$size_type}}">{{$size_type}}</option>
-                                @endforeach
-                            </select>
-                            <a href="#">{{trans('messages.check_size')}}</a>
-                        </div>
-                        <div class="desc2">
-                            <div style="width:120px;padding:0;">
-                                <input name="num" class="" id="item-num" value="1" size="6"></div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="desc2">
+
                             <a class="btn btn-primary btn-add-cart" href="{{route('cart.store',['id'=>$product->id])}}"><i class="glyphicon glyphicon-shopping-cart"></i> {{trans('messages.add_cart')}}</a>
-                            <!--<a class="btn btn-primary btn-buy" href="{{route('cart.store',['id'=>$product->id])}}"><i class="glyphicon"></i> {{trans('messages.one_step_buy')}}</a>-->
-                        </div>
+
+                            <div class="desc2">
+                                <ul class="list-group">
+                                    <li class="list-group-item">+{{trans('messages.product_desc')}}<p>{!! $product->desc !!}</p></li>
+                                    <li class="list-group-item">+{{trans('messages.return_desc')}}<p>{{$product->return_desc}}</p></li>
+                                    <li class="list-group-item">+{{trans('messages.clean_desc')}}<p>{{$product->clean_desc}}</p></li>
+                                </ul>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -72,6 +65,10 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+    $('.desc2 li').click(function(){
+        $('.desc2 li p').hide();
+        $(this).find('p').show();
+    })
     $('#item-num').TouchSpin({
         min: 1,
         max: 999999

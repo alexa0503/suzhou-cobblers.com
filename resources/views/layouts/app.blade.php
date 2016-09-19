@@ -47,7 +47,7 @@
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="{{url('/')}}">
-					<img class="dark-logo" src="{{asset('/assets/images/logo.png')}}" alt="Suzhou Cobblers">
+					<img class="dark-logo" src="{{asset('/assets/images/logo.png')}}" height="90" alt="Suzhou Cobblers">
 				</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
 					<img src="{{asset('/assets/images/icon-menu.png')}}" />

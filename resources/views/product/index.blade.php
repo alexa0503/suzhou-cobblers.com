@@ -11,24 +11,17 @@
     <div class="col-md-8 col-xs-12">
         <div class="row item-row">
             @foreach ($products as $product)
-            <div class="col-xs-11 col-md-12 col-xs-offset-1 col-md-offset-0 item-thumb">
+            <div class="item-thumb">
                 <a href="{{route('product.show',['id'=>$product->id])}}">
                     @foreach ($product->images as $image)
                     <img src="{{asset($image->image_path)}}" width="160" height="160">
                     @endforeach
                 </a>
-                <h4>{{$product->title}}<small>{{trans('messages.price.symbol')}}{{$product->price}}</small></h4>
-                <p class="desc1">
-                    {!! $product->desc !!}
-                </p>
-                <p class="desc2">
-                    ＊{{trans('messages.return_desc')}}：{{$product->return_desc}}
-                </p>
-                <p class="desc2">
-                    ＊{{trans('messages.clean_desc')}}：{{$product->clean_desc}}
-                </p>
+                <h4>{{$product->title}}<small style="font-size:0.8em;">库存状态:有库存</small></h4>
+                <h4>销售价:{{trans('messages.price.symbol')}}{{$product->price}}</h4>
                 <!--<a class="btn btn-primary btn-add-cart" data-url="{{route('cart.create',['id'=>$product->id])}}"><i class="glyphicon glyphicon-shopping-cart"></i> {{trans('messages.add_cart')}}</a>-->
                 <a class="btn btn-primary" href="{{route('product.show',['id'=>$product])}}"><i class="glyphicon glyphicon-zoom-in"></i> {{trans('messages.view_detail')}}</a>
+                
             </div>
             @endforeach
         </div>
