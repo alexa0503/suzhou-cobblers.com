@@ -108,6 +108,7 @@ html,body{
     padding: 2px 10px;
     border: 1px solid #ccc;
     border-radius: 0;
+    color: #000;
 }
 .item-description .list-inline li {
     vertical-align:middle;
