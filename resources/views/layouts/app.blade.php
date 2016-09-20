@@ -91,10 +91,10 @@
 					<a href="https://twitter.com/suzhou_cobblers" target="_blank" rel="nofollow"><img src="{{asset('/assets/images/16-twitter.png')}}" /></a>
 					<a href="http://weibo.com/suzhoucobblers" target="_blank" rel="nofollow"><img src="{{asset('/assets/images/16-sinaweibo.png')}}" /></a>
 					<a href="http://www.flickr.com/photos/suzhou-cobblers/" target="_blank" rel="nofollow"><img src="{{asset('/assets/images/16-flickr.png')}}" /></a>
-					<!--<span id="TA_socialButtonBubbles326" class="social-img TA_socialButtonBubbles">
+					<span id="TA_socialButtonBubbles326" class="social-img TA_socialButtonBubbles">
 														<a target="_blank" href="http://www.tripadvisor.com/Attraction_Review-g308272-d1175749-Reviews-Suzhou_Cobblers_Boutique-Shanghai.html"><img src="http://www.tripadvisor.com/img/cdsi/img2/branding/socialWidget/20x28_green-21693-2.png"/></a>
 												</span>
-					<script src="http://www.jscache.com/wejs?wtype=socialButtonBubbles&amp;uniq=326&amp;locationId=1175749&amp;color=green&amp;size=rect&amp;lang=en_US&amp;display_version=2"></script>-->
+					<script src="http://www.jscache.com/wejs?wtype=socialButtonBubbles&amp;uniq=326&amp;locationId=1175749&amp;color=green&amp;size=rect&amp;lang=en_US&amp;display_version=2"></script>
 				</p>
 			</div>
 		</div>
