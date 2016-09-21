@@ -63,7 +63,7 @@
                 <div class="form-group well" style="margin-left:20px;margin-right:20px;">
                     <label class="col-lg-2 col-md-3 col-xs-3 control-label">支付方式:</label>
                     <div class="col-lg-10 col-md-9 col-xs-9">
-                        @if (App::getLocale() == 'zh-cn')
+                        @if (App::getLocale() == 'zh-cn1')
                         <div class="col-md-3 col-xs-6">
                             <input type="radio" name="payment" checked value="1" id="payment-alipay"/>
                             <label for="payment-alipay"><i><img src="{{asset('assets/images/icon-alipay.png')}}" height="24" alt="支付宝" /></i></label>
