@@ -4,7 +4,7 @@
     @foreach ($types as $type)
     <div class="row press">
         <div style="width:164px;text-align:center;" class="pull-left">
-            <img src="{{asset($type->thumb)}}">
+            <div style="width:130px;overflow:hidden;margin:0 17px;"><img src="{{asset($type->thumb)}}"></div>
             <h4 style="margin:10px 10px;">{{$type->title}}</h4>
         </div>
         <div style="margin-left:186px;padding-right:60px;">
