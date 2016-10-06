@@ -52,7 +52,7 @@ html,body{
     color: #cccccc;
 }
 #mainContet .container .press {
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 #mainContet .container .press:last{
     margin-bottom: 0px;
@@ -192,20 +192,20 @@ html,body{
     color:#333;
 }
 .press-list {
-    width: 110px;
+    width: 90px;
     position: relative;
     min-height: 1px;
     float: left;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
+    height: 160px;
 }
 .press-list:last{
     margin-right: 0;
 }
 .press-list div {
-    line-height: 2em;
+    line-height: 1.4em;
 }
 .press-list div p{
-    display: inline;
     width: 100%;
 }
 #login form{
