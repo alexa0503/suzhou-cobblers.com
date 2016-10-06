@@ -28,6 +28,7 @@ html,body{
 #custom-collapse ul>li>a:focus,
 #custom-collapse ul>li>a.active{
     background:#66ffff;
+    font-family: Arial;
 }
 .page-header {
     margin: 0;

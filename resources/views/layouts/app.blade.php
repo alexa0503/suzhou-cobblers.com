@@ -89,10 +89,10 @@
 				</p>
 				<p class="social-img">
 					<a href="https://twitter.com/suzhou_cobblers" target="_blank" rel="nofollow"><img src="{{asset('/assets/images/icon-twitter.png')}}" /></a>
-					<a href="http://weibo.com/suzhoucobblers" target="_blank"><img src="{{asset('/assets/images/icon-facebook.png')}}" /></a>
-					<a href="http://weibo.com/suzhoucobblers" target="_blank"><img src="{{asset('/assets/images/icon-weibo.png')}}" /></a>
-					<a href="http://www.flickr.com/photos/suzhou-cobblers/" target="_blank"><img src="{{asset('/assets/images/icon-flickr.png')}}" /></a>
-					<a href="http://www.flickr.com/photos/suzhou-cobblers/" target="_blank"><img src="{{asset('/assets/images/icon-pinterest.png')}}" /></a>
+					<a href="https://www.facebook.com/Suzhou-Cobblers-196740377153/?ref=bookmarks" target="_blank"><img src="{{asset('/assets/images/icon-facebook.png')}}" /></a>
+					<a href="http://weibo.com/1944985263/profile?topnav=1&wvr=6" target="_blank"><img src="{{asset('/assets/images/icon-weibo.png')}}" /></a>
+					<a href="https://www.instagram.com/suzhou_cobblers/" target="_blank"><img src="{{asset('/assets/images/icon-flickr.png')}}" /></a>
+					<a href="https://www.pinterest.com/suzhoucobblers/" target="_blank"><img src="{{asset('/assets/images/icon-pinterest.png')}}" /></a>
 					<a href="http://www.tripadvisor.cn/Attraction_Review-g308272-d1175749-Reviews-Suzhou_Cobblers_Boutique-Shanghai.html" target="_blank"><img src="{{asset('/assets/images/icon-tripadvisor.png')}}" /></a>
 				</p>
 			</div>
