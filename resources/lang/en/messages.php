@@ -15,7 +15,7 @@ return [
     'return_desc' => 'Return Description',
     'clean_desc' => 'Clean Description',
     'product_desc' => 'Product Description',
-    'add_cart' => 'Add Cart',
+    'add_cart' => 'Add to Cart',
     'one_step_buy'=>'Buy Now',
     'view_detail' => 'View More',
     'price'=>[
@@ -26,7 +26,7 @@ return [
         'size'=>'Please select size',
         'num'=>'Please input number',
     ],
-    'select_size'=>'SELECT SIZE',
+    'select_size'=>'-- SELECT SIZE --',
     'qty'=>'Qty',
     'size'=>'Size',
     'check_size'=>'Check your size',

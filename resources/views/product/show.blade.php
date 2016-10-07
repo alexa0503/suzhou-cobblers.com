@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row item-row">
         <div class="container" id="item">
-            <div class="col-md-4 visible-md visible-lg">
+            <div class="col-md-3 visible-md visible-lg">
                 <div>
                     <img src="/uploads/green-tea-200x200.gif">
                 </div>
@@ -13,47 +13,30 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-md-8 col-xs-12">
-                <div class="row">
-                    <h3 style="margin:-10px 0 20px 0;">{{$product->title}}</h3>
-                    <div class="item-gallery col-md-6">
-                        <div class="item-image">
-                            <img src="{{asset('assets/images/space.gif')}}" width="300" height="300">
-                        </div>
-                        <div class="item-small-images">
-                            @foreach ($product->images as $image)
-                            <img src="{{asset($image->image_path)}}" width="90" height="90">
-                            @endforeach
-                        </div>
+            <div class="col-md-9 col-xs-12">
+                <div class="product-show">
+                    <img src="{{asset($product->previewImage)}}" width="580" height="580"/>
+                    <h3>{{$product->title}}</h3>
+                    <h4>{{trans('messages.price.word_symbol')}} {{$product->price}}</h4>
+                    <div class="div-row">
+                        <select name="size" id="item-size">
+                            <option value="">{{trans('messages.select_size')}}</option>
+                                @foreach ($product->sizes as $size_type)
+                                <option value="{{$size_type}}">{{$size_type}}</option>
+                                @endforeach
+                        </select>
+                        <img src="{{asset('assets/images/icon-size.png')}}"/>
                     </div>
-                    <div class="item-description col-md-6">
-                        <h3>{{$product->title}}<small>{{trans('messages.stock')}}:{{$product->stock}}</small><h3>
-                        <h4>Price: {{trans('messages.price.word_symbol')}}{{$product->price}}<h4>
-                        <!--<span class="label label-info">{{trans('messages.stock')}}: {{$product->stock}}</span>-->
-                        <div class="rows">
-                            <ul class="list-group list-inline">
-                                <li><select name="size" id="item-size">
-                                <option value="">{{trans('messages.select_size')}}</option>
-                                    @foreach ($product->sizes as $size_type)
-                                    <option value="{{$size_type}}">{{$size_type}}</option>
-                                    @endforeach
-                                </select></li>
-                                <li><a href="#">{{trans('messages.check_size')}}</a></li>
-                                <li><div style="width:120px;padding:0;">
-                                    <input name="num" class="" id="item-num" value="1" size="6"></div>
-                                <div class="clearfix"></div></li>
-                            </ul>
-                        </div>
-
-                            <a class="btn btn-primary btn-add-cart" href="{{route('cart.store',['id'=>$product->id])}}"><i class="glyphicon glyphicon-shopping-cart"></i> {{trans('messages.add_cart')}}</a>
-
-                            <div class="desc2">
-                                <ul class="list-group">
-                                    <li class="list-group-item">+{{trans('messages.product_desc')}}<p>{!! $product->desc !!}</p></li>
-                                    <li class="list-group-item">+{{trans('messages.return_desc')}}<p>{{$product->return_desc}}</p></li>
-                                    <li class="list-group-item">+{{trans('messages.clean_desc')}}<p>{{$product->clean_desc}}</p></li>
-                                </ul>
-                            </div>
+                    <div class="div-row">
+                        {{trans('messages.qty')}}: <input name="num" class="num" id="item-num" value="1" size="4">
+                        <a class="btn btn-add-cart" href="{{route('cart.store',['id'=>$product->id])}}">{{trans('messages.add_cart')}}</a>
+                    </div>
+                    <div>
+                        <ul class="list-group">
+                            <li class="list-group-item">+{{trans('messages.product_desc')}}<p>{!! $product->desc !!}</p></li>
+                            <li class="list-group-item">+{{trans('messages.return_desc')}}<p>{{$product->return_desc}}</p></li>
+                            <li class="list-group-item">+{{trans('messages.clean_desc')}}<p>{{$product->clean_desc}}</p></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -69,10 +52,6 @@ $(document).ready(function() {
         $('.desc2 li p').hide();
         $(this).find('p').show();
     })
-    $('#item-num').TouchSpin({
-        min: 1,
-        max: 999999
-    });
     var img = $('.item-small-images img').attr('src');
     $('.item-image img').attr('src', img);
     $('.item-small-images img').on('click mouseover',function(){

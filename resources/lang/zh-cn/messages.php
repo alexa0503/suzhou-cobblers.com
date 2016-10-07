@@ -25,7 +25,7 @@ return [
         'size'=>'请选择尺寸',
         'num'=>'请输入正确的数量',
     ],
-    'select_size'=>'选择尺码',
+    'select_size'=>'-- 选择尺码 --',
     'qty'=>'数量',
     'check_size'=>'尺码对照',
     'empty_cart'=>'购物车里没有商品喔',
