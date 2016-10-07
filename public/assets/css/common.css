@@ -11,7 +11,7 @@ html,body{
     float: left;
     margin-left: 0px;
     border-color: #389ebd;
-    margin-top:10px;
+    margin-top:50px;
 }
 #navbar-custom .navbar-toggle .icon-bar {
     background-color: #FFFFFF;
@@ -74,7 +74,15 @@ html,body{
     padding: 0 50px 0 0;
 }
 .item-row {
-    margin-top: 10px;
+    margin-top: -20px;
+    position: relative;
+}
+.item-row .type {
+    position: absolute;
+    top: -54px;
+    left: 310px;
+    font-size: 1.8em;
+    font-weight: bold;
 }
 .item-row .detail {
     border:1px solid #ccc;
@@ -130,16 +138,24 @@ html,body{
     margin: 20px 0;
 }
 .item-thumb {
-    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 295px;
+    margin: 0 5px;
 }
 .item-thumb img {
-    padding: 0 10px 0 0;
+    padding: 0 0 0 0;
 }
 .item-thumb h4 small,
 .item-description h4 small {
     color: #cccccc;
     font-size: 1.1em;
     margin-left: 20px;
+}
+.item-thumb h3,.item-thumb h4 {
+    padding: 0 5px;
+    margin: 0;
+    line-height: 1.8em;
 }
 #fixed-btn {
     position: fixed;

@@ -19,7 +19,7 @@ return [
     'view_detail' => '查看详细',
     'price'=>[
         'symbol'=>'￥',
-        'word_symbol'=>'RMB ￥',
+        'word_symbol'=>'RMB￥',
     ],
     'error'=>[
         'size'=>'请选择尺寸',

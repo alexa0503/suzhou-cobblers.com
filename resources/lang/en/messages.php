@@ -20,7 +20,7 @@ return [
     'view_detail' => 'View More',
     'price'=>[
         'symbol'=>'$',
-        'word_symbol'=>'US $',
+        'word_symbol'=>'US$',
     ],
     'error'=>[
         'size'=>'Please select size',
