@@ -16,15 +16,17 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $type_id = $request->input('type');
+        $type_id = $request->get('type');
         if ( $type_id == null){
             return redirect(route('types'));
         }
         $products = App\Product::where('type_id', $type_id)->where('is_active',1)->get();
         $types = App\ProductType::all();
+        $type = App\ProductType::find($type_id);
         return view('product.index',[
             'products'=>$products,
-            'types'=>$types
+            'types'=>$types,
+            'type'=>$type,
         ]);
     }
 
