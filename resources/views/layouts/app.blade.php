@@ -61,6 +61,7 @@
 	<nav class="navbar navbar-default navbar-fixed-bottom" id="nav-bottom">
 	  <div class="container">
 		  <ul class="nav nav-pills nav-justified">
+		  <!--
 		    <li role="presentation"><a href="{{url('types')}}">{{trans('messages.new_items')}}</a></li>
 		    <li role="presentation" class="dropup">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -71,6 +72,7 @@
 		          <li><a href="{{route('account.profile')}}">{{trans('messages.profile')}}</a></li>
 		        </ul>
 			</li>
+			-->
 		    <li role="presentation"><a href="{{route('order.index')}}">{{trans('messages.my_orders')}}</a></li>
 		    <li role="presentation"><a href="{{url('cart')}}"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="badge" style="display:none;" id="cart-num">0</span></a></li>
 		  </ul>

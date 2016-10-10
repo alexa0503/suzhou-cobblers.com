@@ -261,6 +261,9 @@ html,body{
     }
 }
 @media (max-width: 768px) {
+    html,body{
+        font-size: 1.1em;
+    }
     #custom-collapse {
         border-color: transparent;
         border: none;
