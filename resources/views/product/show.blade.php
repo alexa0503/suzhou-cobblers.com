@@ -38,6 +38,14 @@
                             <li class="list-group-item">+{{trans('messages.clean_desc')}}<p>{{$product->clean_desc}}</p></li>
                         </ul>
                     </div>
+                    <div class="recommended">
+                        <h4>{{trans('messages.may_like')}}</h4>
+                        @foreach ($products as $product)
+                        <div class="col-md-6 col-xs-6">
+                        <a href="{{route('product.show',['id'=>$product->id])}}"><img src="{{asset($product->previewImage)}}" /></a>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,8 +56,8 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
-    $('.desc2 li').click(function(){
-        $('.desc2 li p').hide();
+    $('.product-show .list-group li').click(function(){
+        $('.product-show .list-group li p').hide();
         $(this).find('p').show();
     })
     var img = $('.item-small-images img').attr('src');

@@ -84,5 +84,6 @@ return [
     'phone_number'=>'Phone number',
     'name' => 'Name',
     'email' => 'Email',
-    'updated_at' => 'Updated at'
+    'updated_at' => 'Updated at',
+    'may_like' => 'YOU MAY LIKE'
 ];

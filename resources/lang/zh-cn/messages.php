@@ -83,5 +83,6 @@ return [
     'phone_number'=>'联系电话',
     'name' => '用户名',
     'email' => '电子邮箱',
-    'updated_at' => '最后登录时间'
+    'updated_at' => '最后登录时间',
+    'may_like' => '你可能喜欢'
 ];

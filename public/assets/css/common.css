@@ -108,7 +108,7 @@ html,body{
     width: 400px;
     margin: 20px 0 0 0;
 }
-.item-description .desc2 li p {
+.product-show .list-group li p {
     display: none;
     padding: 10px;
 }
@@ -397,10 +397,22 @@ html,body{
     border: none;
     border-bottom: 1px solid #ccc;
     margin-left: 5px;
+    line-height: 20px;
 }
 .product-show .div-row {
     padding: 6px 0;
 }
 .product-show ul.list-group>li {
     border-top: 1px solid #ccc!important;
+}
+.product-show .recommended {
+    border-top: 1px solid #ccc;
+}
+.product-show .recommended h4{
+    font-size: 1em;
+    font-weight: normal;
+    padding-left: 10px;
+}
+.product-show .recommended img {
+    width: 100%;
 }
