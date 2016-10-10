@@ -79,10 +79,14 @@ html,body{
 }
 .item-row .type {
     position: absolute;
-    top: -54px;
-    left: 310px;
-    font-size: 1.8em;
-    font-weight: bold;
+    top: -44px;
+    left: 300px;
+    font-size: 1em;
+    font-weight: normal;
+    z-index: 1000;
+}
+.item-row .type a {
+    color: #ccc;
 }
 .item-row .detail {
     border:1px solid #ccc;

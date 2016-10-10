@@ -85,5 +85,6 @@ return [
     'name' => 'Name',
     'email' => 'Email',
     'updated_at' => 'Updated at',
-    'may_like' => 'YOU MAY LIKE'
+    'may_like' => 'YOU MAY LIKE',
+    'back'=>'BACK TO'
 ];

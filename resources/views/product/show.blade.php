@@ -8,12 +8,13 @@
                     <img src="/uploads/green-tea-200x200.gif">
                 </div>
                 <div class="list-group">
-                    @foreach ($types as $type)
-                    <a href="{{route('product.index',['type'=>$type->id])}}" class="list-group-item @if ($product->type_id == $type->id){{'active'}}@endif">{{$type->title}}</a>
+                    @foreach ($types as $t)
+                    <a href="{{route('product.index',['type'=>$t->id])}}" class="list-group-item @if (Request::get('type') == $t->id){{'active'}}@endif">{{$t->title}}</a>
                     @endforeach
                 </div>
             </div>
             <div class="col-md-9 col-xs-12">
+                <div class="type visible-xs">{{trans('messages.back')}} <a href="{{route('product.index',['type'=>$type->id])}}">{{$type->title}}</a></div>
                 <div class="product-show">
                     <img src="{{asset($product->previewImage)}}" width="580" height="580"/>
                     <h3>{{$product->title}}</h3>
