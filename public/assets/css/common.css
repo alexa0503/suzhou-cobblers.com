@@ -208,7 +208,7 @@ html,body{
     color:#333;
 }
 .press-list {
-    width: 90px;
+    width: 110px;
     position: relative;
     min-height: 1px;
     float: left;
@@ -219,7 +219,8 @@ html,body{
     margin-right: 0;
 }
 .press-list div {
-    line-height: 1.4em;
+    line-height: 1.1em;
+    font-size: 0.9em;
 }
 .press-list div p{
     width: 100%;
