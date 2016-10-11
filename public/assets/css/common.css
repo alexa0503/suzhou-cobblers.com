@@ -146,6 +146,7 @@ html,body{
     float: left;
     width: 295px;
     margin: 0 5px;
+    height: 440px;
 }
 .item-thumb img {
     padding: 0 0 0 0;

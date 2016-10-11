@@ -17,6 +17,13 @@ class IndexController extends Controller
         $product_types = App\ProductType::whereNull('parent_id')->get();
         return view('types', ['types'=>$product_types]);
     }
+    public function newProduct()
+    {
+        $products = App\Product::where('is_active',1)->orderBy('created_at', 'DESC')->limit(12)->get();
+        return view('new-product',[
+            'products'=>$products,
+        ]);
+    }
     public function address(Request $request, $id = null)
     {
         $address = App\DeliverAddress::findOrFail($id);

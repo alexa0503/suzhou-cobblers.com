@@ -61,6 +61,7 @@ class ProductController extends Controller
     {
         $product = App\Product::find($id);
         $types = App\ProductType::all();
+        $type = App\ProductType::find($product->type_id);
         $size_types = $product->sizes;
         $products = App\Product::where('type_id', $product->type_id)->where('id', '!=', $product->id)->get()->random(2);
         //var_dump($products);
@@ -70,6 +71,7 @@ class ProductController extends Controller
             'product'=>$product,
             'size_types'=>$size_types,
             'products'=>$products,
+            'type'=>$type,
         ]);
     }
 

@@ -19,6 +19,7 @@ class MenuMiddleware
         Menu::make('homeNavbar', function($menu){
             $menu->add(trans('messages.menu.home'),['route'=>'home']);
             $products = $menu->add(trans('messages.menu.products'),'#');
+            $products->add(trans('messages.new_items'),route('new'));
             $product_types = App\ProductType::all();
             foreach( $product_types as $type){
                 $products->add($type->title, route('product.index',['type'=>$type->id ]));

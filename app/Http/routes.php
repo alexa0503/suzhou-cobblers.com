@@ -64,6 +64,7 @@ Route::group(['middleware' => ['locale','menu']], function () {
         return view('index');
     }]);
     Route::get('/types', ['as'=>'types','uses'=>'IndexController@types']);
+    Route::get('/new', ['as'=>'new','uses'=>'IndexController@newProduct']);
     Route::get('/presses', ['as'=>'presses',function () {
         $types = App\Press::whereNull('parent_id')->get();
         return view('press',['types'=>$types]);
