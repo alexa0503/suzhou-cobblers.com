@@ -273,6 +273,7 @@ html,body{
     #custom-collapse {
         border-color: transparent;
         border: none;
+        font-size: 1.4em;
     }
     #custom-collapse ul {
         margin-top: 4px;
@@ -280,6 +281,10 @@ html,body{
     }
     #custom-collapse ul>li{
         border-bottom: 1px solid #1b7776;
+    }
+    #custom-collapse ul>li>a {
+
+        line-height: 1.4em;
     }
     #custom-collapse ul>li:last-of-type {
         border-bottom: none;
@@ -291,7 +296,7 @@ html,body{
         margin-top: 0;
         background:#FFFFFF;
         border-top: 1px solid #1b7776;
-        font-size: 1.1em;
+        font-size: 1em;
     }
     #custom-collapse ul>li>ul>li{
         border-bottom: none;

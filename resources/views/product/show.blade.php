@@ -17,7 +17,7 @@
                 <div class="type visible-xs">{{trans('messages.back')}} <a href="{{route('product.index',['type'=>$type->id])}}">{{$type->title}}</a></div>
                 <div class="product-show">
                     <img src="{{asset($product->previewImage)}}" width="580" height="580"/>
-                    <h3>{{$product->title}}</h3>
+                    <h2>{{$product->title}}</h2>
                     <h4>{{trans('messages.price.word_symbol')}} {{$product->price}}</h4>
                     <div class="div-row">
                         <select name="size" id="item-size">
@@ -32,11 +32,11 @@
                         {{trans('messages.qty')}}: <input name="num" class="num" id="item-num" value="1" size="4">
                         <a class="btn btn-add-cart" href="{{route('cart.store',['id'=>$product->id])}}">{{trans('messages.add_cart')}}</a>
                     </div>
-                    <div>
+                    <div id="list-item">
                         <ul class="list-group">
-                            <li class="list-group-item">+{{trans('messages.product_desc')}}<p>{!! $product->desc !!}</p></li>
-                            <li class="list-group-item">+{{trans('messages.return_desc')}}<p>{{$product->return_desc}}</p></li>
-                            <li class="list-group-item">+{{trans('messages.clean_desc')}}<p>{{$product->clean_desc}}</p></li>
+                            <li class="list-group-item"><h3>+{{trans('messages.product_desc')}}</h3><p>{!! $product->desc !!}</p></li>
+                            <li class="list-group-item"><h3>+{{trans('messages.return_desc')}}</h3><p>{{$product->return_desc}}</p></li>
+                            <li class="list-group-item"><h3>+{{trans('messages.clean_desc')}}</h3><p>{{$product->clean_desc}}</p></li>
                         </ul>
                     </div>
                     <div class="recommended">
