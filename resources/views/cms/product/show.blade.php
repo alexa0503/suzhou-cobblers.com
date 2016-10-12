@@ -96,19 +96,19 @@
                                       <div class="form-group">
                                         <label for="" class="col-lg-2 col-md-3 control-label">产品描述</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <p class="form-control-static">{!!$properties['zh-cn']['desc']!!}</p>
+                                            <p class="form-control-static">@if (isset($properties['zh-cn']['desc'])){!!$properties['zh-cn']['desc']!!}@endif</p>
                                         </div>
                                       </div>
                                       <div class="form-group">
                                         <label for="" class="col-lg-2 col-md-3 control-label">退换说明</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <p class="form-control-static">{{$properties['zh-cn']['return_desc']}}</p>
+                                            <p class="form-control-static">@if (isset($properties['zh-cn']['return_desc'])){{$properties['zh-cn']['return_desc']}}@endif</p>
                                         </div>
                                       </div>
                                       <div class="form-group">
                                         <label for="" class="col-lg-2 col-md-3 control-label">清洁指南</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <p class="form-control-static">{{$properties['zh-cn']['clean_desc']}}</p>
+                                            <p class="form-control-static">@if (isset($properties['zh-cn']['clean_desc'])){{$properties['zh-cn']['clean_desc']}}@endif</p>
                                         </div>
                                       </div>
                                   </div>
@@ -131,19 +131,19 @@
                                         <div class="form-group">
                                           <label for="" class="col-lg-2 col-md-3 control-label">产品描述</label>
                                           <div class="col-lg-10 col-md-9">
-                                              <p class="form-control-static">{!!$properties['en']['desc']!!}</p>
+                                              <p class="form-control-static">@if (isset($properties['en']['desc'])){!!$properties['en']['desc']!!}@endif</p>
                                           </div>
                                         </div>
                                         <div class="form-group">
                                           <label for="" class="col-lg-2 col-md-3 control-label">退换说明</label>
                                           <div class="col-lg-10 col-md-9">
-                                              <p class="form-control-static">{{$properties['en']['return_desc']}}</p>
+                                              <p class="form-control-static">@if (isset($properties['en']['return_desc'])){{$properties['en']['return_desc']}}@endif</p>
                                           </div>
                                         </div>
                                         <div class="form-group">
                                           <label for="" class="col-lg-2 col-md-3 control-label">清洁指南</label>
                                           <div class="col-lg-10 col-md-9">
-                                              <p class="form-control-static">{{$properties['en']['clean_desc']}}</p>
+                                              <p class="form-control-static">@if (isset($properties['en']['clean_desc'])){{$properties['en']['clean_desc']}}@endif</p>
                                           </div>
                                         </div>
                                   </div>
