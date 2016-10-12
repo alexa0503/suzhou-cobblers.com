@@ -426,3 +426,8 @@ html,body{
 .product-show .recommended img {
     width: 100%;
 }
+.item-row .bxslider {
+    width: 580px;
+    margin: 0 auto 0 0;
+    height: 580px;
+}

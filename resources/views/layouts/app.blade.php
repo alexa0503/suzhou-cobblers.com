@@ -13,6 +13,7 @@
 	<link href="{{asset('/assets/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{asset('/assets/css/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet">
 	<link href="{{asset('/assets/css/common.css')}}" rel="stylesheet">
+	<link href="{{asset('/assets/css/jquery.bxslider.css')}}" rel="stylesheet">
 
 	<link rel="icon" type="image/x-icon" href="{{asset('/assets/images/favicon.png')}}" />
 	<!--移动端版本兼容 -->

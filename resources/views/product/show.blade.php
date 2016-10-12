@@ -16,7 +16,14 @@
             <div class="col-md-9 col-xs-12">
                 <div class="type visible-xs">{{trans('messages.back')}} <a href="{{route('product.index',['type'=>$type->id])}}">{{$type->title}}</a></div>
                 <div class="product-show">
-                    <img src="{{asset($product->previewImage)}}" width="580" height="580"/>
+                    <div class="bxslider">
+                        <ul>
+                            @foreach ($product->images as $image)
+                            <li><img src="{{asset($image->image_path)}}" width="580" height="580"/></li>
+                            @endforeach
+                        </ul>
+                    </div>
+
                     <h2>{{$product->title}}</h2>
                     <h4>{{trans('messages.price.word_symbol')}} {{$product->price}}</h4>
                     <div class="div-row">
@@ -55,8 +62,10 @@
 </div>
 @endsection
 @section('scripts')
+<script src="{{asset('/assets/js/jquery.bxslider.min.js')}}"></script>
 <script>
 $(document).ready(function() {
+    $('.bxslider ul').bxSlider();
     $('.product-show .list-group li').click(function(){
         $('.product-show .list-group li p').hide();
         $(this).find('p').show();
