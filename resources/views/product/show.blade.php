@@ -47,7 +47,7 @@
                         </ul>
                     </div>
                     <div class="recommended">
-                        <h4>{{trans('messages.may_like')}}</h4>
+                        <h3>{{trans('messages.may_like')}}</h3>
                         @foreach ($products as $product)
                         <div class="col-md-6 col-xs-6">
                         <a href="{{route('product.show',['id'=>$product->id])}}"><img src="{{asset($product->previewImage)}}" /></a>
