@@ -439,3 +439,10 @@ html,body{
 .item-topper-01 .item-topper-02 {
     position: absolute;
 }
+#size-type {
+    margin-top: 200px;
+}
+#size-type .modal-content{
+    border-color: #fff;
+    background: #389ebd;
+}

@@ -221,7 +221,7 @@ class ProductController extends Controller
             $product->stock = $request->input('stock');
             $product->size_type_id = $request->input('product_size_type');
             $product->type_id = $request->input('product_type');
-            //$product->save();
+            $product->save();
             //删除图片
             if( $locale == 'en' && !empty($thumb)){
                 App\ProductImage::where('product_id', $product->id)->delete();

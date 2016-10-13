@@ -74,7 +74,7 @@ class Product extends Model
     }
     public function sizeType()
     {
-        return $this->belongsTo('App\ProductSizeType');
+        return $this->belongsTo('App\ProductSizeType','size_type_id');
     }
     public function prices()
     {

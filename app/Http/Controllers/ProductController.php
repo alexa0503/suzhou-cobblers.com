@@ -63,6 +63,9 @@ class ProductController extends Controller
         $types = App\ProductType::all();
         $type = App\ProductType::find($product->type_id);
         $size_types = $product->sizes;
+        $size_type = App\ProductSizeType::find($product->size_type_id);
+        $size_type_desc = App::getLocale() == 'en' ? $size_type->en_desc : $size_type->zh_cn_desc;
+        //var_dump($size_type);
         $products = App\Product::where('type_id', $product->type_id)->where('id', '!=', $product->id)->get()->random(2);
         //var_dump($products);
         //$locale = \Cookie::get('locale');
@@ -71,6 +74,7 @@ class ProductController extends Controller
             'product'=>$product,
             'size_types'=>$size_types,
             'products'=>$products,
+            'size_type_desc'=>$size_type_desc,
             'type'=>$type,
         ]);
     }

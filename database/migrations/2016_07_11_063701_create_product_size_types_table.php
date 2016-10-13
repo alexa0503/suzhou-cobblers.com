@@ -15,6 +15,8 @@ class CreateProductSizeTypesTable extends Migration
         Schema::create('product_size_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',100);
+            $table->text('en_desc');
+            $table->text('zh_cn_desc');
             $table->text('value');
         });
     }

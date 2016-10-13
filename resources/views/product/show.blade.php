@@ -33,7 +33,7 @@
                                 <option value="{{$size_type}}">{{$size_type}}</option>
                                 @endforeach
                         </select>
-                        <img src="{{asset('assets/images/icon-size.png')}}"/>
+                        <a href="#" class="product-size"  data-toggle="modal" data-target="#size-type"><img src="{{asset('assets/images/icon-size.png')}}"/></a>
                     </div>
                     <div class="div-row">
                         {{trans('messages.qty')}}: <input name="num" class="num" id="item-num" value="1" size="4">
@@ -48,9 +48,9 @@
                     </div>
                     <div class="recommended">
                         <h3>{{trans('messages.may_like')}}</h3>
-                        @foreach ($products as $product)
+                        @foreach ($products as $p)
                         <div class="col-md-6 col-xs-6">
-                        <a href="{{route('product.show',['id'=>$product->id])}}"><img src="{{asset($product->previewImage)}}" /></a>
+                        <a href="{{route('product.show',['id'=>$p->id])}}"><img src="{{asset($p->previewImage)}}" /></a>
                         </div>
                         @endforeach
                     </div>
@@ -58,7 +58,20 @@
             </div>
         </div>
     </div>
-
+</div>
+<!-- Modal -->
+<div class="modal fade" id="size-type" tabindex="-1" role="dialog" aria-labelledby="size-type">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>Size Chart</h4>
+      </div>
+      <div class="modal-body">
+          {!! $size_type_desc !!}
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
 @section('scripts')
