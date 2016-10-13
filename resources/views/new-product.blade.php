@@ -3,6 +3,13 @@
 <div class="container">
     <div class="col-md-12 col-xs-12">
         <div class="row item-row">
+            <div class="row">
+            <div class="item-topper-01">
+                <div class="item-topper-02"><img src="{{asset('assets/images/top-new-product-02.png')}}" height=200 style="margin-top:10px;" /></div>
+                <img src="{{asset('assets/images/top-new-product-03.png')}}" width="100%" class="visible-xs" />
+                <img src="{{asset('assets/images/top-new-product-01.png')}}" width="1280" class="visible-md visible-lg" />
+            </div>
+            </div>
             <div class="type visible-xs">{{trans('messages.new_items')}}</div>
             @foreach ($products as $product)
             <div class="item-thumb">

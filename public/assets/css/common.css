@@ -431,3 +431,11 @@ html,body{
     margin: 0 auto 0 0;
     height: 580px;
 }
+.item-topper-01 {
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.item-topper-01 .item-topper-02 {
+    position: absolute;
+}
