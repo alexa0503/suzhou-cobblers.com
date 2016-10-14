@@ -65,7 +65,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4>Size Chart</h4>
+        <h4>Size Chart of {{$product->title}}</h4>
       </div>
       <div class="modal-body">
           {!! $size_type_desc !!}

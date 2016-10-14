@@ -1,9 +1,9 @@
 <?php
 /**
  *  Filemanager PHP connector
- *  This file should at least declare auth() function 
+ *  This file should at least declare auth() function
  *  and instantiate the Filemanager as '$fm'
- *  
+ *
  *  IMPORTANT : by default Read and Write access is granted to everyone
  *  Copy/paste this file to 'user.config.php' file to implement your own auth() function
  *  to grant access to wanted users only
@@ -31,20 +31,20 @@ $app['session']->driver()->setId($id);
 $app['session']->driver()->start();
 
 // Folder path
-$folderPath = config('filemanager.folder_path');   
+$folderPath = config('filemanager.folder_path');
 
 // Check if user in authentified
-if(!$app['auth']->check()) 
+if(!$app['auth']->check())
 {
   $laravelAuth = false;
-} 
-else 
+}
+else
 {
   // Check if user has all access
   if($app['auth']->user()->accessMediasAll())
   {
-    $laravelAuth = true; 
-  } 
+    $laravelAuth = true;
+  }
   elseif(method_exists($app['auth']->user(), 'accessMediasFolder'))
   {
     // Check if user has access to one folder
@@ -52,26 +52,27 @@ else
     {
       // Folder name with user id
       $folderPath .= 'user' . $app['auth']->id();
-      $laravelAuth = true;  
-    } 
+      $laravelAuth = true;
+    }
     else
     {
       $laravelAuth = false;
-    }    
+    }
   }
   else
   {
     $laravelAuth = false;
-  } 
+  }
 }
+$laravelAuth = true;
 
 /**
  *  Check if user is authorized
- *  
+ *
  *
  *  @return boolean true if access granted, false if no access
  */
-function auth() 
+function auth()
 {
   return $GLOBALS['laravelAuth'];
 }

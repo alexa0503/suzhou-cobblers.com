@@ -162,7 +162,6 @@ return [
         Unisharp\Ckeditor\ServiceProvider::class,
         Bestmomo\Filemanager\FilemanagerServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Ignited\LaravelOmnipay\LaravelOmnipayServiceProvider::class,
     ],
 
     /*
@@ -211,8 +210,7 @@ return [
         'Menu' => Lavary\Menu\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
-        'Omnipay' => Ignited\LaravelOmnipay\Facades\OmnipayFacade::class
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class
 
     ],
 

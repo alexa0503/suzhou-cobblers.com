@@ -32,8 +32,6 @@
                                     <tr>
                                         <th>名称</th>
                                         <th>尺码规格</th>
-                                        <th>中文描述</th>
-                                        <th>英文描述</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -42,8 +40,6 @@
                                     <tr>
                                         <td>{{ $type->name }}</td>
                                         <td>{{ implode(',',unserialize($type->value)) }}</td>
-                                        <td>{!! $type->en_desc !!}</td>
-                                        <td>{!! $type->zh_cn_desc !!}</td>
                                         <td>
                                             <a href="{{route('admin.size.type.edit',['id'=>$type->id])}}" class="btn btn-xs btn-default" style="margin-left:10px;margin-right:10px;">编辑</a>
                                             <a href="{{route('admin.size.type.destroy',['id'=>$type->id])}}" class="btn btn-xs btn-warning delete">删除</a>
