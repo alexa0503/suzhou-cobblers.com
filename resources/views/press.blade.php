@@ -40,25 +40,21 @@
 <script>
 $('#press-image').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
-  //var recipient = button.data('whatever') // Extract info from data-* attributes
   var src = button.data('src');
-  //alert(url);
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   var modal = $(this)
   var w = $('#press-image').width() - 50;
-  var image = new Image();
-  image.src = src;
-  image.onload = function() {
-      if( w < image.width ){
-          modal.find('.modal-body').html('<img src="'+src+'" />').find('img').width(w);
+  modal.find('.modal-body').html('<img src="'+src+'" width="'+w+'" />').find('img').load(function(){
+      var image = new Image();
+      image.src = src;
+      image.onload = function() {
+          if( w < image.width ){
+             $(this).width(w);
+          }
+          else{
+              $(this).width(image.width)
+          }
       }
-  }
-
-
-
-  //modal.find('.modal-title').text('New message to ' + recipient)
-  //modal.find('.modal-body input').val(recipient)
+  });
 })
 </script>
 @endsection
