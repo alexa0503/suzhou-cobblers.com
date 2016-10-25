@@ -265,6 +265,13 @@ html,body{
     #item .item-description {
         padding: 0;
     }
+
+    #press-image .modal-dialog {
+        width:80%;
+    }
+    #press-image .modal-dialog .modal-body img {
+        width:100%;
+    }
 }
 @media (max-width: 768px) {
     html,body{
