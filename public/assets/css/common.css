@@ -453,3 +453,9 @@ html,body{
     border-color: #fff;
     background: #389ebd;
 }
+button.close {
+    font-size: 60px;
+}
+.modal-header {
+    padding:0 15px;
+}
