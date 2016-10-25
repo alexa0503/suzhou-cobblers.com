@@ -362,7 +362,7 @@ html,body{
 #nav-bottom .nav-justified > li {
     display: table-cell;
     width: 1%;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 #nav-bottom .nav-justified > li > a {
     margin-bottom: 0;
