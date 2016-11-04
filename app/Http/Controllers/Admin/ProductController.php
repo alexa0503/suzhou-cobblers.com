@@ -22,12 +22,18 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $types = App\ProductType::all();
-        if( !empty($request->input('type')) ){
-            $products = App\Product::where('type_id', $request->input('type'))->paginate(20);
+        $model = App\Product::whereNotNull('type_id');
+        if( null != $request->input('type') ){
+            $model->where('type_id', $request->input('type'));
         }
-        else{
-            $products = App\Product::paginate(20);
+        if( null != $request->input('title') ){
+            $model->whereHas('properties', function($query) use($request){
+                $query->where('value','LIKE', '%'.urldecode($request->get('title')).'%');
+                //->where('name','LIKE', '%'.urldecode($request->get('mobile')).'%')
+            });
+            //$model->where('title', 'like', '%'.$request->input('title').'%');
         }
+        $products = $model->paginate(20);
         return view('cms.product.index', [
             'products'=>$products,
             'types'=>$types,
@@ -89,9 +95,10 @@ class ProductController extends Controller
             $locale = Session::get('locale.language');
             //$product->title = $request->input('product_name');
             $product->stock = $request->input('stock');
-            //$product->creatd_at = Carbon::now();
             $product->size_type_id = $request->input('product_size_type');
             $product->type_id = $request->input('product_type');
+            $product->creatd_at = Carbon::now();
+            $product->updated_at = Carbon::now();
             $product->save();
             //图库
             foreach( $thumb as $k=>$v){
@@ -221,6 +228,8 @@ class ProductController extends Controller
             $product->stock = $request->input('stock');
             $product->size_type_id = $request->input('product_size_type');
             $product->type_id = $request->input('product_type');
+            //$product->creatd_at = Carbon::now();
+            $product->updated_at = Carbon::now();
             $product->save();
             //删除图片
             if( $locale == 'en' && !empty($thumb)){

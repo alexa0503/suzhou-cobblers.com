@@ -46,6 +46,8 @@
                                         <th>库存</th>
                                         <th>分类</th>
                                         <th>状态</th>
+                                        <th>创建时间</th>
+                                        <th>更新时间</th>
                                         <th style="width:200px;">操作</th>
                                     </tr>
                                     </thead>
@@ -57,6 +59,8 @@
                                         <td>{{ $product->stock }}</td>
                                         <td><a href="">{{ $product->type->title }}</a></td>
                                         <td class="product-status">@if ($product->is_active == 0)<font color="red">下架</font>@else正常@endif</td>
+                                        <td>{{ $product->created_at }}</td>
+                                        <td>{{ $product->updated_at }}</td>
                                         <td>
                                             <a href="{{route('admin.product.status',['id'=>$product->id])}}" class="btn btn-xs btn-default product-update-status">@if ($product->is_active == 0)上架@else下架@endif</a>
                                             <a href="{{route('admin.product.edit',['id'=>$product->id])}}" class="btn btn-xs btn-default">编辑</a>
@@ -70,7 +74,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
                                         <div class="dataTables_paginate paging_bootstrap" id="basic-datatables_paginate">
-                                            {!! $products->links() !!}
+                                            {!! $products->appends(array('type' => Request::get('type') ))->links(); !!}
                                         </div>
                                     </div>
                                 </div>
