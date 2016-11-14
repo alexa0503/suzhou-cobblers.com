@@ -46,7 +46,7 @@
                                         <label for="text" class="col-lg-2 col-md-3 control-label">尺码标准</label>
                                         <div class="col-lg-10 col-md-9">
                                             <select name="product_size_type" class="form-control">
-                                                <option value="-1">选择尺码标准</option>
+                                                <option value="">选择尺码标准/无</option>
                                                 @foreach ($size_types as $size_type)
                                                 <option value="{{$size_type->id}}" @if ($size_type->id == $product->size_type_id) selected="selected" @endif>
                                                     {{$size_type->name}}
@@ -84,16 +84,30 @@
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">退换说明</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <textarea name="return_desc" class="form-control">{{ $product->return_desc }}</textarea>
+                                            <textarea name="return_desc" class="article-ckeditor form-control">{{ $product->return_desc }}</textarea>
                                             <label class="help-block" for="return_desc"></label>
+                                            <select name="return_template" class="form-control template-select" data-name="return_desc">
+                                                <option value="">请选择对应模板</option>
+                                                <option value="-1">将此内容加入模板</option>
+                                                @foreach ($return_templates as $template)
+                                                <option value="{{$template->id}}">{{$template->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">清洁指南</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <textarea name="clean_desc" class="form-control">{{ $product->clean_desc }}</textarea>
+                                            <textarea name="clean_desc" class="article-ckeditor form-control">{{ $product->clean_desc }}</textarea>
                                             <label class="help-block" for="clean_desc"></label>
+                                            <select name="clean_template" class="form-control template-select" data-name="clean_desc">
+                                                <option value="">请选择对应模板</option>
+                                                <option value="-1">将此内容加入模板</option>
+                                                @foreach ($clean_templates as $template)
+                                                <option value="{{$template->id}}">{{$template->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
@@ -189,8 +203,25 @@ $(document).ready(function() {
 <script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
 <script>
-    $('.article-ckeditor').ckeditor({
-        filebrowserBrowseUrl: '{!! url('filemanager/index.html') !!}'
+    $(document).ready(function() {
+        $('.article-ckeditor').ckeditor({
+            filebrowserBrowseUrl: '{!! url('filemanager/index.html') !!}'
+        });
+        $('.template-select').change(function(){
+            var name = $(this).attr('data-name');
+            var id = $(this).val();
+            var url = '{{url("admin/template")}}/'+id;
+            $.getJSON(url,function(json){
+                if( json.ret == 0){
+                    $('textarea[name="'+name+'"]').val(json.value);
+                    $('textarea[name="'+name+'"]').ckeditor({
+                        filebrowserBrowseUrl: '{!! url('filemanager/index.html') !!}'
+                    });
+                }
+            })
+
+        });
     });
+
 </script>
 @endsection

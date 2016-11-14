@@ -50,7 +50,7 @@
                                       <div class="form-group">
                                         <label for="" class="col-lg-2 col-md-3 control-label">尺码标准</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <p class="form-control-static"><a href="" title="编辑">{{$product->sizeType->name}}</a></p>
+                                            <p class="form-control-static"><a href="" title="编辑">{{ $product->sizeType ? $product->sizeType->name : '--'}}</a></p>
                                         </div>
                                       </div>
                                       <div class="form-group">

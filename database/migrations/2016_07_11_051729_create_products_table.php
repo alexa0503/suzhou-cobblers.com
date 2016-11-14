@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->boolean('is_active');
             $table->integer('type_id')->unsigned()->index();
             $table->foreign('type_id')->references('id')->on('product_types');
-            $table->integer('size_type_id')->unsigned()->index();
+            $table->integer('size_type_id')->unsigned()->index()->nullable();
             $table->foreign('size_type_id')->references('id')->on('product_size_types');
             $table->timestamps();
         });

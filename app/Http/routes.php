@@ -99,6 +99,7 @@ Route::group(['middleware' => ['locale','menu', 'auth:admin']], function () {
     Route::put('/admin/product/status/{id}', 'Admin\ProductController@status')->name('admin.product.status');
     Route::resource('/admin/product', 'Admin\ProductController');
     Route::resource('/admin/products/type', 'Admin\ProductTypeController');
+    Route::resource('/admin/template', 'Admin\TemplateController');
     Route::post('/admin/account', 'AdminController@accountPost');
     Route::resource('/admin/press', 'Admin\PressController');
     Route::resource('admin/order', 'Admin\OrderController');

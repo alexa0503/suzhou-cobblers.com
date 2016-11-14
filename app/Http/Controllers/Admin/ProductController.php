@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $types = App\ProductType::all();
-        $model = App\Product::whereNotNull('type_id');
+        $model = App\Product::orderBy('created_at', 'DESC');
         if( null != $request->input('type') ){
             $model->where('type_id', $request->input('type'));
         }
@@ -33,6 +33,7 @@ class ProductController extends Controller
             });
             //$model->where('title', 'like', '%'.$request->input('title').'%');
         }
+        //$model->orderBy('created_at', 'DESC');
         $products = $model->paginate(20);
         return view('cms.product.index', [
             'products'=>$products,
@@ -49,9 +50,13 @@ class ProductController extends Controller
     {
         $types = App\ProductType::all();
         $size_types = App\ProductSizeType::all();
+        $clean_templates = App\Template::where('type', 2)->get();
+        $return_templates = App\Template::where('type', 1)->get();
         return view('cms.product.create',[
             'types'=>$types,
-            'size_types'=>$size_types
+            'size_types'=>$size_types,
+            'clean_templates'=>$clean_templates,
+            'return_templates'=>$return_templates,
         ]);
     }
 
@@ -97,7 +102,7 @@ class ProductController extends Controller
             $product->stock = $request->input('stock');
             $product->size_type_id = $request->input('product_size_type');
             $product->type_id = $request->input('product_type');
-            $product->creatd_at = Carbon::now();
+            $product->created_at = Carbon::now();
             $product->updated_at = Carbon::now();
             $product->save();
             //图库
@@ -129,6 +134,16 @@ class ProductController extends Controller
             $property->name = 'desc';
             $property->value = $request->input('desc');
             $property->save();
+
+            //退换说明模板
+            if( $request->input('return_template') == '-1'){
+                $template = new App\Template;
+                $template->type = 1;
+                $template->name = '退换说明模板-'.Carbon::now();
+                $template->value = $request->input('return_desc');
+                $template->save();
+            }
+
             //退换说明
             $property = new App\ProductProperty();
             $property->product_id = $product->id;
@@ -136,7 +151,16 @@ class ProductController extends Controller
             $property->name = 'return_desc';
             $property->value = $request->input('return_desc');
             $property->save();
-            //退换说明
+
+            //清洁指南模板
+            if( $request->input('clean_template') == '-1'){
+                $template = new App\Template;
+                $template->type = 2;
+                $template->name = '清洁指南模板-'.Carbon::now();
+                $template->value = $request->input('clean_desc');
+                $template->save();
+            }
+            //清洁指南
             $property = new App\ProductProperty();
             $property->product_id = $product->id;
             $property->locale = $locale;
@@ -179,10 +203,14 @@ class ProductController extends Controller
         $product = App\Product::find($id);
         $types = App\ProductType::all();
         $size_types = App\ProductSizeType::all();
+        $clean_templates = App\Template::where('type', 2)->get();
+        $return_templates = App\Template::where('type', 1)->get();
         return view('cms.product.edit',[
             'types'=>$types,
             'size_types'=>$size_types,
-            'product'=>$product
+            'product'=>$product,
+            'clean_templates'=>$clean_templates,
+            'return_templates'=>$return_templates,
         ]);
     }
 
@@ -228,7 +256,7 @@ class ProductController extends Controller
             $product->stock = $request->input('stock');
             $product->size_type_id = $request->input('product_size_type');
             $product->type_id = $request->input('product_type');
-            //$product->creatd_at = Carbon::now();
+            //$product->created_at = Carbon::now();
             $product->updated_at = Carbon::now();
             $product->save();
             //删除图片
@@ -287,6 +315,16 @@ class ProductController extends Controller
             $property->name = 'desc';
             $property->value = $request->input('desc');
             $property->save();
+
+            //退换说明模板
+            if( $request->input('return_template') == '-1'){
+                $template = new App\Template;
+                $template->type = 1;
+                $template->name = '退换说明模板-'.Carbon::now();
+                $template->value = $request->input('return_desc');
+                $template->save();
+            }
+
             //退换说明
             $property_model = App\ProductProperty::where('product_id', $product->id)
                 ->where('locale', $locale)
@@ -302,6 +340,16 @@ class ProductController extends Controller
             $property->name = 'return_desc';
             $property->value = $request->input('return_desc');
             $property->save();
+
+            //清洁指南模板
+            if( $request->input('clean_template') == '-1'){
+                $template = new App\Template;
+                $template->type = 2;
+                $template->name = '清洁指南模板-'.Carbon::now();
+                $template->value = $request->input('clean_desc');
+                $template->save();
+            }
+
             //清洁说明
             $property_model = App\ProductProperty::where('product_id', $product->id)
                 ->where('locale', $locale)

@@ -11,7 +11,7 @@ class ProductType extends Model
     public $timestamps = false;
     public function getTitleAttribute($value)
     {
-        return isset($this->localeProperty) ? $this->localeProperty->name : $this->title;
+        return isset($this->localeProperty) ? $this->localeProperty->name : '';
     }
     public function getDescAttribute($value)
     {
