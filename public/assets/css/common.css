@@ -112,7 +112,7 @@ html,body{
     width: 400px;
     margin: 20px 0 0 0;
 }
-.product-show .list-group li p {
+.product-show .list-group li div.list-content {
     display: none;
     padding: 10px;
 }

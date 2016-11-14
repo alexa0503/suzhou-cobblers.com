@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->foreign('type_id')->references('id')->on('product_types');
             $table->integer('size_type_id')->unsigned()->index()->nullable();
             $table->foreign('size_type_id')->references('id')->on('product_size_types');
+            $table->integer('sort_id')->default(0);
             $table->timestamps();
         });
     }

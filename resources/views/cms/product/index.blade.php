@@ -46,6 +46,7 @@
                                         <th>库存</th>
                                         <th>分类</th>
                                         <th>状态</th>
+                                        <th>排序</th>
                                         <th>创建时间</th>
                                         <th>更新时间</th>
                                         <th style="width:200px;">操作</th>
@@ -59,6 +60,7 @@
                                         <td>{{ $product->stock }}</td>
                                         <td><a href="">{{ $product->type->title }}</a></td>
                                         <td class="product-status">@if ($product->is_active == 0)<font color="red">下架</font>@else正常@endif</td>
+                                        <td>{{ $product->sort_id }}</td>
                                         <td>{{ $product->created_at }}</td>
                                         <td>{{ $product->updated_at }}</td>
                                         <td>

@@ -117,6 +117,14 @@
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">排序[从小到大可负数]</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input type="text" name="sort_id" class="form-control" value="0" id="sort_id">
+                                            <label class="help-block" for="sort_id"></label>
+                                        </div>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                    <div class="form-group">
                                         <label class="col-lg-2 col-md-3 control-label"></label>
                                         <div class="col-lg-10 col-md-9">
                                             <button class="btn btn-default ml15" type="submit">提 交</button>
@@ -144,6 +152,10 @@ $(document).ready(function() {
 
     $('#stock').TouchSpin({
         min: 0,
+        max: 999999
+    });
+    $('#sort_id').TouchSpin({
+        min: -999999,
         max: 999999
     });
     $("#price").TouchSpin({

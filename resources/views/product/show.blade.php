@@ -41,9 +41,9 @@
                     </div>
                     <div id="list-item">
                         <ul class="list-group">
-                            <li class="list-group-item"><h3>+{{trans('messages.product_desc')}}</h3><p>{!! $product->desc !!}</p></li>
-                            <li class="list-group-item"><h3>+{{trans('messages.return_desc')}}</h3><p>{{$product->return_desc}}</p></li>
-                            <li class="list-group-item"><h3>+{{trans('messages.clean_desc')}}</h3><p>{{$product->clean_desc}}</p></li>
+                            <li class="list-group-item"><h3><span>+</span>{{trans('messages.product_desc')}}</h3><div class="list-content">{!! $product->desc !!}</div></li>
+                            <li class="list-group-item"><h3><span>+</span>{{trans('messages.return_desc')}}</h3><div class="list-content">{!! $product->return_desc !!}</div></li>
+                            <li class="list-group-item"><h3><span>+</span>{{trans('messages.clean_desc')}}</h3><div class="list-content">{!! $product->clean_desc !!}</div></li>
                         </ul>
                     </div>
                     <div class="recommended">
@@ -79,9 +79,11 @@
 <script>
 $(document).ready(function() {
     $('.bxslider ul').bxSlider();
-    $('.product-show .list-group li').click(function(){
-        $('.product-show .list-group li p').hide();
-        $(this).find('p').show();
+    $('#list-item .list-group li').click(function(){
+        $('#list-item .list-group li div.list-content').hide();
+        $('#list-item .list-group li h3 span').html('+');
+        $(this).find('h3>span').html('-');
+        $(this).find('.list-content').show();
     })
     var img = $('.item-small-images img').attr('src');
     $('.item-image img').attr('src', img);

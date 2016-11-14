@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $types = App\ProductType::all();
-        $model = App\Product::orderBy('created_at', 'DESC');
+        $model = App\Product::orderBy('sort_id', 'ASC')->orderBy('created_at', 'DESC');
         if( null != $request->input('type') ){
             $model->where('type_id', $request->input('type'));
         }
@@ -102,6 +102,7 @@ class ProductController extends Controller
             $product->stock = $request->input('stock');
             $product->size_type_id = $request->input('product_size_type');
             $product->type_id = $request->input('product_type');
+            $product->sort_id = (int)$request->input('sort_id');
             $product->created_at = Carbon::now();
             $product->updated_at = Carbon::now();
             $product->save();
@@ -256,6 +257,7 @@ class ProductController extends Controller
             $product->stock = $request->input('stock');
             $product->size_type_id = $request->input('product_size_type');
             $product->type_id = $request->input('product_type');
+            $product->sort_id = (int)$request->input('sort_id');
             //$product->created_at = Carbon::now();
             $product->updated_at = Carbon::now();
             $product->save();
