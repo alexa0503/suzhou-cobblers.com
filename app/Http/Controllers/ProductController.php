@@ -20,7 +20,7 @@ class ProductController extends Controller
         if ( $type_id == null){
             return redirect(route('types'));
         }
-        $products = App\Product::where('type_id', $type_id)->where('is_active',1)->get();
+        $products = App\Product::where('type_id', $type_id)->where('is_active',1)->orderBy('sort_id', 'ASC')->orderBy('created_at', 'DESC')->get();
         $types = App\ProductType::all();
         $type = App\ProductType::find($type_id);
         return view('product.index',[

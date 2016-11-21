@@ -200,6 +200,8 @@ html,body{
 #item .list-group-item,#custom-list .list-group-item {
     background-color: transparent;
     border: none;
+    padding-left: 0;
+    padding-right: 0;
 }
 #item a.list-group-item,#custom-list a.list-group-item {
     color:#ccc;

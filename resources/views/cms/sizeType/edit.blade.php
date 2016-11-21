@@ -28,7 +28,7 @@
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">尺码规格</label>
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">尺码规格尺码规格[输入null则为无尺码，多个尺码以,分开]</label>
                                         <div class="col-lg-10 col-md-9">
                                             <input type="text" name="value" class="form-control" value="{{ implode(',',unserialize($type->value)) }}">
                                             <label class="help-block" for="value"></label>
@@ -36,7 +36,7 @@
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">中文版描述</label>
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">中文版描述[为空不显示]</label>
                                         <div class="col-lg-10 col-md-9">
                                             <textarea name="en_desc" class="form-control article-ckeditor">{{$type->zh_cn_desc}}</textarea>
                                             <label class="help-block" for="zh_cn_desc"></label>
@@ -44,7 +44,7 @@
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">英文版描述</label>
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">英文版描述[为空不显示]</label>
                                         <div class="col-lg-10 col-md-9">
                                             <textarea name="en_desc" class="form-control article-ckeditor">{{$type->en_desc}}</textarea>
                                             <label class="help-block" for="en_desc"></label>

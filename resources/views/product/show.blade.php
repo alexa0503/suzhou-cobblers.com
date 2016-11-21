@@ -26,6 +26,7 @@
 
                     <h2>{{$product->title}}</h2>
                     <h4>{{trans('messages.price.word_symbol')}} {{$product->price}}</h4>
+                    @if ( strtolower($product->sizes[0]) != 'null' )
                     <div class="div-row">
                         <select name="size" id="item-size">
                             <option value="">{{trans('messages.select_size')}}</option>
@@ -33,8 +34,9 @@
                                 <option value="{{$size_type}}">{{$size_type}}</option>
                                 @endforeach
                         </select>
-                        <a href="#" class="product-size"  data-toggle="modal" data-target="#size-type"><img src="{{asset('assets/images/icon-size.png')}}"/></a>
+                        @if (strip_tags($size_type_desc) != '')<a href="#" class="product-size"  data-toggle="modal" data-target="#size-type"><img src="{{asset('assets/images/icon-size.png')}}"/></a>@endif
                     </div>
+                    @endif
                     <div class="div-row">
                         {{trans('messages.qty')}}: <input name="num" class="num" id="item-num" value="1" size="4">
                         <a class="btn btn-add-cart" href="{{route('cart.store',['id'=>$product->id])}}">{{trans('messages.add_cart')}}</a>
@@ -80,10 +82,17 @@
 $(document).ready(function() {
     $('.bxslider ul').bxSlider();
     $('#list-item .list-group li').click(function(){
-        $('#list-item .list-group li div.list-content').hide();
-        $('#list-item .list-group li h3 span').html('+');
-        $(this).find('h3>span').html('-');
-        $(this).find('.list-content').show();
+        if( $(this).find('h3>span').html() == '+' ){
+            $('#list-item .list-group li div.list-content').hide();
+            $('#list-item .list-group li h3 span').html('+');
+            $(this).find('h3>span').html('-');
+            $(this).find('.list-content').show();
+        }
+        else{
+            $(this).find('h3>span').html('+');
+            $(this).find('.list-content').hide();
+        }
+
     })
     var img = $('.item-small-images img').attr('src');
     $('.item-image img').attr('src', img);

@@ -47,8 +47,8 @@ class SizeTypeController extends Controller
             'value' => 'required',
         ]);
         $form_data = [
-            'name' => $request->get('name'),
-            'value' => serialize(explode(',',trim($request->get('value')))),
+            'name' => $request->input('name'),
+            'value' => serialize(explode(',',trim($request->input('value')))),
             'en_desc' => $request->input('en_desc'),
             'zh_cn_desc' => $request->input('zh_cn_desc'),
         ];
@@ -97,8 +97,8 @@ class SizeTypeController extends Controller
             'value' => 'required',
         ]);
         $type = App\ProductSizeType::find($id);
-        $type->name = $request->get('name');
-        $type->value = serialize(explode(',',trim($request->get('value'))));
+        $type->name = $request->input('name');
+        $type->value = serialize(explode(',',trim($request->input('value'))));
         $type->en_desc = $request->input('en_desc');
         $type->zh_cn_desc = $request->input('zh_cn_desc');
         $type->save();
