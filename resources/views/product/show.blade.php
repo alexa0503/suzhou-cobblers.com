@@ -34,7 +34,7 @@
                                 <option value="{{$size_type}}">{{$size_type}}</option>
                                 @endforeach
                         </select>
-                        @if (strip_tags($size_type_desc) != '')<a href="#" class="product-size"  data-toggle="modal" data-target="#size-type"><img src="{{asset('assets/images/icon-size.png')}}"/></a>@endif
+                        @if (strip_tags($size_type_desc,'<img>') != '')<a href="#" class="product-size"  data-toggle="modal" data-target="#size-type"><img src="{{asset('assets/images/icon-size.png')}}"/></a>@endif
                     </div>
                     @endif
                     <div class="div-row">

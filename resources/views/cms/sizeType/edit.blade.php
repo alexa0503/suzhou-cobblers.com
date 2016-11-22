@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">中文版描述[为空不显示]</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <textarea name="en_desc" class="form-control article-ckeditor">{{$type->zh_cn_desc}}</textarea>
+                                            <textarea name="zh_cn_desc" class="form-control article-ckeditor">{{$type->zh_cn_desc}}</textarea>
                                             <label class="help-block" for="zh_cn_desc"></label>
                                         </div>
                                     </div>
